@@ -807,25 +807,53 @@
 
 <h1 id="db2-shift-installation">Db2 Shift Installation</h1>
 <h2 id="installation">Installation</h2>
-<p>The Db2 Shift program (<code>db2shift</code>) is a single executable image that can be run directly on Linux. This is a bundled application which means that it contains files and settings that are part of the executable code. From a user perspective, no additional software is required to run it.</p>
-<p>The program does not create any directories on your system, but it will generate files during the execution of a shift. A best practice would be to
-create a new directory only for the purposes of the running the Db2 Shift code. Place the program into this directory and make sure that it has the execution
-bit set.</p>
-<p><code>chmod +x ./db2shift</code></p>
-<p>There are currently three versions of the Db2 Shift program, depending on which Linux distribution you are running. The versions have been compiled for:</p>
+<p>The Db2 Shift program (<code>db2shift</code>) is a single executable
+image that can be run directly on Linux. This is a bundled
+application which means that it contains files and settings
+that are part of the executable code. From a user
+perspective, no additional software is required to run it.</p>
+<p>The program does not create any directories on your system,
+but it will generate files during the execution of a shift.
+A best practice would be to create a new directory only for
+the purposes of the running the Db2 Shift code.</p>
+<p>The Db2 Shift program is bundled into a single zip file
+which contains version of the code for different Linux
+distributions (there may be more than those listed). </p>
 <ul>
-<li>CentOS 6, Red Hat 6 - db2linux-centos6.zip</li>
-<li>CentOS 7, Red Hat 7 - db2linux-centos7.zip</li>
-<li>CentOS 8, CentOS Stream, Red Hat 8 - db2shift-centos8.zip</li>
-<li>Ubuntu 18.04, 20.04 - db2shift-ubuntu20.zip</li>
+<li>CentOS 6, Red Hat 6 - db2shift-centos6</li>
+<li>CentOS 7, Red Hat 7 - db2shift-centos7</li>
+<li>CentOS 8, CentOS Stream, Red Hat 8 - db2shift-centos8</li>
+<li>Ubuntu 18.04 - db2shift-ubuntu18</li>
+<li>Ubuntu 20.04 - db2shift-ubuntu20</li>
+<li>SUSE 11.4 - db2shift-suse11</li>
+<li>Power Linux - db2shift-powerLE</li>
 </ul>
-<p>Additional versions may be added depending on feedback from users. The program will work in command mode for all environments. If you attempt to use the UI mode, the
-screen may look something like:</p>
+<p><strong>Note</strong>: The current Technical Preview site provides the
+ability to download individual versions of the Db2 Shift
+program rather than a bundled zip file.</p>
+<p>Rename the Db2 Shift version that is suitable for your
+environment to db2shift:</p>
+<pre><code>mv db2shift-centos7 db2shift
+</code></pre>
+<p>Place the program into its own directory and make sure that it has the execution bit set.</p>
+<pre><code>chmod +x ./db2shift
+</code></pre>
+<p>Additional versions may be added depending on feedback from users. </p>
+<p>The program will work in command mode for all environments.
+If you attempt to use the UI mode with the incorrect OS
+version, the screen may look distorted.</p>
 <p><img alt="Bad Version" src="../img/c2c_bad_version.png" /></p>
-<p>If your display looks like this then you will have the wrong version installed. If you are running on a different platform than those listed above, please contact us directly. See the <a href="../support/">Support</a> section for details.</p>
+<p>If your display looks like this, then you will have the
+wrong version installed. If you are running on a different
+platform than those listed above, please contact us
+directly. See Appendix B for details.</p>
 <h2 id="program-download">Program Download</h2>
-<p>The program is currently in <strong>Technical Preview</strong> which requires that an IBMer to access the code. The program will be placed into a public Technical preview
-website when the code has been certified for use. Until that time, IBMers are asked to retrieve the code via the <a href="https://ibm.ent.box.com/folder/160709037030?s=z92luepoqkxykk1uyvhrc82x596kidac">Db2 Shift Technical Preview code</a> folder.</p>
+<p>The program is currently in Technical Preview and is available from the following download site:</p>
+<ul>
+<li><a href="https://ibm.biz/c2cdownload">Db2 Click to Containerize Technical Preview</a></li>
+</ul>
+<p>You will need an IBM userid to register and gain access to the program.
+ </p>
 
               
             </article>

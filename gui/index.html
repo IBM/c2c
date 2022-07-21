@@ -1094,20 +1094,52 @@ that are only found in the UI including:</p>
 <li>Ability to save commands as separate executable shell scripts</li>
 </ul>
 <h2 id="enabling-ui-mode">Enabling UI Mode</h2>
-<p>The Db2 Shift UI Mode is automatically invoked when the <code>db2shift</code> command is issued
-without any parameters. Requesting help with the <code>--help</code> flag will also display
-help panels using the UI system. </p>
-<p>If your terminal session uses Black on White display, the UI will force the display
-to use a BLACK background. If you prefer to use a BLACK on WHITE display, use the 
-<code>--mono</code> flag when using the <code>db2shift</code> command.</p>
-<p>For terminals that do not show any color, please check the settings in the <code>TERM</code> environment variable.</p>
-<p><code>echo $TERM</code></p>
-<p>If the results do not show <code>xterm-256color</code> then you will need to update it by issuing the command:</p>
-<p><code>export TERM=xterm-256color</code></p>
+<p>The Db2 Shift UI Mode is automatically invoked when the
+<code>db2shift</code> command is issued without any parameters.
+Requesting help with the <code>--help</code> flag will also display help
+panels using the UI system.</p>
+<p>If your terminal session does not support color, the UI can
+be forced to the display the text as WHITE characters on a
+BLACK background. Use the <code>--mono</code> flag when using the
+<code>db2shift</code> command.</p>
+<p>For terminals that do not show any color, please check the
+settings in the TERM environment variable.</p>
+<pre><code>echo $TERM
+</code></pre>
+<p>If the results do not show xterm-256color then you will need
+to check what terminal emulations are available with the
+following command:</p>
+<pre><code>toe -a
+</code></pre>
+<p>This will produce a list of terminal emulations. The
+preferred settings is xterm-256color, but other color
+options may also work.</p>
+<p>Update the terminal emulation setting by issuing the command:</p>
+<pre><code>export TERM=xterm-256color
+</code></pre>
 <p>To make this change permanent on your system, edit the <code>~/.bashrc</code> configuration file in your 
 instance home directory and add the above command to the end of the script. Save the file and then
 issue the following command to change the terminal settings.</p>
-<p><code>source ~/.bashrc</code></p>
+<pre><code>source ~/.bashrc
+</code></pre>
+<p>If you find the display contains strange characters (white
+boxes instead of underscores for fields) like those on the
+following page, then your OS may not support many of the
+Unicode characters.</p>
+<p><img alt="No Unicode" src="../img/c2c_no_unicode.png" /></p>
+<p>This is an indication that Unicode character set extensions
+have not been installed on the Linux distribution being
+used. The <code>--mono</code> flag will change the characters so that
+they are more readable in this environment. When using the
+UI, the following characters will be substituted for the
+graphical characters:</p>
+<ul>
+<li>Underscore (fields) with dots “...”</li>
+<li>Checkbox selection with asterisk “*” and unselected with dash “-“</li>
+<li>More (scrollbar) with “+” and previous with “-“</li>
+</ul>
+<p>The following screen illustrates the difference in mono mode.</p>
+<p><img alt="No Unicode" src="../img/c2c_mono_mode.png" /></p>
 <h2 id="menu-system-overview">Menu System Overview</h2>
 <p>The Db2 Shift menu system provides access to all scenarios that are described in this
 documentation:</p>
@@ -1148,7 +1180,7 @@ separator line, and a list of all active keys. In this example, there are five
 keys:</p>
 <ul>
 <li><code>ESC</code> - Quit</li>
-<li><code>^?</code> - Field Help</li>
+<li><code>^F</code> - Field Help</li>
 <li><code>^D</code> - Select Directory</li>
 <li><code>^A</code> - Analyze</li>
 <li><code>^X</code> - Review and Execute</li>
@@ -1158,9 +1190,8 @@ To completely exit out of the program at <strong>any</strong> time, use the <cod
 key (break) will always stop execution of the UI and return you to the terminal prompt.</p>
 <p>If a letter is provided as an "action" key, press that letter on the keyboard. There is no need to 
 use the shift key. If the letter is proceeded with a carat symbol <code>^</code>, this represents the 
-control (CTRL) key on the keyboard. In the above example, the <code>^?</code> key requires that you hit the
-control key and the <code>?</code> key at the same time. Note that the <code>?</code> character would normally require that 
-you use the <code>SHIFT</code> key to access it as a text character. In the case of the UI, there is no need to do that.</p>
+control (CTRL) key on the keyboard. In the above example, the <code>^F</code> key requires that you hit the
+control key and the <code>F</code> key at the same time. </p>
 <p>Some screens may use letters for commands - for example, the bottom of the main screen uses letters
 to switch screens:</p>
 <p><img alt="Buttons" src="../img/field_main_bottom.png" /></p>
@@ -1185,6 +1216,8 @@ a regular input key.</p>
 <li><code>Shift+Up/Shift+Down</code> - Same as page up and page down if those keys are not available</li>
 <li><code>SPACEBAR</code> - Select or deselect a list item or turn a value on or off</li>
 </ul>
+<p>On a Mac (OSX), the function key needs to be used with the
+Shift+Up/Down arrow to simulate a Page Up or Page Down key.</p>
 <h3 id="text-input">Text Input</h3>
 <p>A text input field will contain underscores that represent the total length of the field.</p>
 <p><img alt="Namespace" src="../img/field_namespace.png" /></p>
@@ -1259,15 +1292,19 @@ current field your cursor is positioned in.</p>
 press <code>ESCAPE</code>, the program will immediately terminate. Details of the terms and condition
 are found in the <a href="../disclaimer/">Disclaimer</a> section of this documentation.</p>
 <p>If you prefer to skip the Disclaimer screen, use the <code>--accept</code> option on the Db2 Shift command line:</p>
-<p><code>db2shift --accept</code></p>
+<pre><code>db2shift --accept
+</code></pre>
 <h2 id="help-panels">Help Panels</h2>
 <p>Help screens are created using read-only lists. The help information will be displayed with scroll bar indicators on the
 far lefthand side of the text:</p>
 <p><img alt="Help Panel" src="../img/c2c_help_panel.png" /></p>
-<p>The up and down arrow indicate that there is text prior to this page and that there is text after this page. Use the
-Page Up and Page Down buttons (or Shift-Up arrow and Shift-Down arrow) to scroll through the help.</p>
-<p>On most panels, pressing <code>^?</code> (<code>CTRL-?</code>) on a field will display detailed information about that field. For instance,
-pressing <code>^?</code> on the follow field:</p>
+<p>The up and down arrow indicate that there is text prior to
+this page and that there is text after this page. Use the
+Page Up and Page Down buttons (or (fn+)Shift-Up arrow and
+(fn+)Shift-Down arrow) to scroll through the help.</p>
+<p>On most panels, pressing <code>^F</code> (CTRL+F) on a field will display
+detailed information about that field. For instance,
+pressing <code>^F</code> on the follow field:</p>
 <p><img alt="Source Database" src="../img/field_source_database.png" /></p>
 <p>This will result in detailed information about the field being displayed on top of the existing panel:</p>
 <p><img alt="Source Database" src="../img/c2c_field_details.png" /></p>
@@ -1311,6 +1348,24 @@ that option.</p>
 <li><a href="../guihadrinstance/">Initialize HADR between Source and Target Instance</a></li>
 <li><a href="../guildapdmc/">Initialize DMC and LDAP Authentication for CP4D</a></li>
 <li><a href="../guiclonecopy/">Copy Cloned Databases to a POD</a></li>
+</ul>
+<p>Note that not every command line option will be display in
+the UI panel. For instance, the mode option to move a
+database to a pod is automatically generated by the UI so
+there is no requirement for this setting to be supplied.</p>
+<p>In addition to using the menu system to navigate to the
+shift scenario you want to perform, you have the option of
+using the following keywords to go directly to a specific
+shift menu:</p>
+<ul>
+<li>--topod – Shift a Db2 database to a Kubernetes, OpenShift or CP4D pod</li>
+<li>--todb2 – Shift a Db2 database to another Db2 instance</li>
+<li>--clone – Clone a Db2 database</li>
+<li>--deploypod – Deploy a clone to a Kubernetes, OpenShift, or CP4D pod</li>
+<li>--deploydb2 – Deploy a clone to another Db2 instance</li>
+<li>--hadrpod – Set up connection between source and destination pod</li>
+<li>--hadrdb2 – Set up connection between source and Db2 instance</li>
+<li>--logs – View logs from last execution</li>
 </ul>
 <h2 id="executing-commands">Executing Commands</h2>
 <p>Each one of the UI panels has an option to Review and Execute a command. The
@@ -1370,12 +1425,19 @@ explicitly name them.</p>
 <li>Deploy to Pod </li>
 <li>Deploy to Instance</li>
 </ul>
-<p>When the Analyze function is selected, the Db2 Shift program will gather information from the source and 
-target databases and present a report containing the settings that are different between the environments:</p>
+<p>Note that you cannot run an Analysis step against a database
+that does not currently exist on the target. This applies
+only to shift or clone operations that are being performed
+against a standard Db2 instance and you are requesting that
+the target database be created by the Db2 Shift command.</p>
+<p>When the Analyze function is selected, the Db2 Shift program
+will gather information from the source and target databases
+and present a report containing the settings that are
+different between the environments:</p>
 <p><img alt="Buttons" src="../img/c2c_analysis_results.png" /></p>
 <p>This examples shows many of the errors that can be reported by the Analysis step. Those items in red will
 stop a shift from occurring, while those in yellow are features which might cause an issue when the 
-database is started in the target location. Details of the setting are available by pressing <code>^?</code> while
+database is started in the target location. Details of the setting are available by pressing <code>^F</code> while
 the cursor is on the line of the configuration parameter:</p>
 <p><img alt="Field Help" src="../img/c2c_analysis_field.png" /></p>
 <p>Some fields will have additional help available through a web link:</p>

@@ -809,8 +809,13 @@
 <p>The interactive mode is invoked when the Db2 Shift command is executed with no parameters, or
 if either the following options are included on the command line:</p>
 <ul>
-<li>--help - Request detailed help information on running the Db2 Shift command</li>
-<li>--mono - Use a monochrome display format (Black on White) when using the UI</li>
+<li>--help – Request detailed help information on running the Db2 Shift command</li>
+<li>--mono – Use a monochrome display format (White on Black) and non-Unicode character set when using the UI</li>
+<li>--accept – Accept license agreement (no license prompt) </li>
+<li>--version – Display Version information</li>
+<li>--shiftpod, --shiftdb2, --clone, --deploypod, --deploydb2, 
+--hadrpod, --hadrdb2 – Direct link to the Db2 Shift scenario found on the main menu</li>
+<li>--logs – View logs from last shift execution</li>
 </ul>
 <p>Details of how to navigate the UI system are found in the <a href="../gui/">User Inteface Overview</a> section.</p>
 <h2 id="syntax-summary">Syntax Summary</h2>
@@ -849,7 +854,6 @@ if either the following options are included on the command line:</p>
    --source-hadr-server="some.server.com"
    --dest-hadr-server="other.server.com"
    --source-hadr-port=3700
-   --dest-hadr-port=3700
 
    Meta Data Generation
    --blank-slate=[True|False], --gen-settings
