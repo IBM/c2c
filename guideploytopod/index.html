@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>UI Deploy a Clone to a Pod - Click to Containerize</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "UI Deploy a Clone to a Pod";
+    var mkdocs_page_input_path = "guideploytopod.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Click to Containerize</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites/">Pre-Requisites</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Command Line</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../syntax/">Db2 Shift Syntax</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../reference/">Options Reference</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Command Line Scenarios</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../scenarios/">Db2 Shift Scenarios</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../shiftpod/">Db2 Shift to Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../shiftinstance/">Db2 Shift to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../clone/">Clone a Database</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../deploypod/">Deploy a Clone to a Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../deployinstance/">Deploy a Clone to an Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../hadrpod/">HADR Setup Instance to Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../hadrinstance/">HADR Setup Instance to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ldapdmc/">LDAP and DMC Initialization</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../clonecopy/">Clone Copying</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Interface Scenarios</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../gui/">User Interface Overvew</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guishifttopod/">UI Shift to POD</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guishifttoinstance/">UI Shift to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guiclone/">UI Clone a Database</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">UI Deploy a Clone to a Pod</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#source-database">Source Database</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#source-or-instance-owner">Source or Instance Owner</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clone-directory">Clone Directory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#target-client-instance-to-pod">Target Client (Instance to POD)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#destination-database">Destination Database</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#destination-pod-namespace-or-project">Destination Pod Namespace or Project</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#destination-server-pod">Destination Server (POD)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metadata-generation">Metadata Generation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#refresh">Refresh</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-settings">Generate Settings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verification">Verification</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hadr-setup">HADR Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#stored-procedures-and-functions">Stored Procedures and Functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performance-threading">Performance: Threading</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performance-compression">Performance: Compression</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guideploytoinstance/">UI Deploy a Clone to an Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guihadrpod/">UI HADR Setup Instance to Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guihadrinstance/">UI HADR Setup Instance to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guildapdmc/">UI LDAP and DMC Initialization</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guiclonecopy/">UI Clone Copying</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Reference</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../reference/">Options Reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../disclaimer/">Disclaimer</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Click to Containerize</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>User Interface Scenarios &raquo;</li>
+        
+      
+    
+    <li>UI Deploy a Clone to a Pod</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ui-clone-deployment-to-openshift-kubernetes-or-cp4d">UI - Clone Deployment to OpenShift, Kubernetes, or CP4D</h1>
+<p><img alt="ShiftPOD" src="../img/c2c_deploy_pod.png" /></p>
+<p>This Db2 Shift option will take a database clone and deploy it into a Db2u pod running on 
+OpenShift, Kubernetes or CP4D.</p>
+<p>The panel requires the following information:</p>
+<ul>
+<li>Database name and clone location</li>
+<li>Destination POD details</li>
+<li>Type of Containerization environment</li>
+<li>Shift Options</li>
+</ul>
+<h2 id="source-database">Source Database</h2>
+<p><img alt="Source Database" src="../img/field_source_database.png" /></p>
+<p>The source database is the name of the database that you want to move to
+the new location. Note that you can have the same or different database
+name at the target. If you provide a different database name at the target,
+the program will copy the database from the source and place it on the
+target and use the existing name.</p>
+<p><strong>Alert!</strong>
+</br>
+If you are shifting a database to Cloud Pak for Data, and your INSTANCE userid is <strong>not</strong> db2inst1, you 
+must execute the following SQL commands from a userid that has SECADM authority:</p>
+<pre><code>GRANT SECADM ON DATABASE TO db2inst1
+GRANT DBADM  ON DATABASE TO db2inst1 
+</code></pre>
+<p>The <code>db2inst1</code> userid does not need to exist in the Operating system in order to grant these privileges to the userid. This
+requirement does not apply to other Db2 Shift environments. If <code>db2inst1</code> is not defined as a <code>SECADM</code> and <code>DBADM</code> user in the
+database, the Data Management Console feature of CP4D will not be able to access the database nor will it be able to monitor it.</p>
+<h2 id="source-or-instance-owner">Source or Instance Owner</h2>
+<p><img alt="Source Owner" src="../img/field_source_owner.png" /></p>
+<p>The Db2 Shift program makes the assumption that the current userid you are logged into
+is the owner of the instance. This is necessary due to the requirement
+to access the underlying files that are used by Db2. If you supply the 
+source owner value, Db2 Shift will double check that you are working in the correct
+instance and the settings files are consistent.</p>
+<h2 id="clone-directory">Clone Directory</h2>
+<p><img alt="Clone Directory" src="../img/field_clone_directory.png" /></p>
+<p>The cloned copy of the database will be retrieved from the directory that is
+specified by this field. When the database is cloned, the contents 
+of the directory can be moved to a new location and the Apply Clone UI 
+option used to shift the contents of the clone into the Db2 database.</p>
+<h2 id="target-client-instance-to-pod">Target Client (Instance to POD)</h2>
+<p><img alt="OC Client" src="../img/field_oc_k8s_local.png" /></p>
+<p>The pod client for a deploy (clone) operation must be 
+supplied as part of the Db2 Shift command. Only one of the following 
+clients must be used:</p>
+<ul>
+<li>OpenShift Destination</li>
+<li>Kubernetes Destination</li>
+<li>Copy of the cloned database is inside the pod</li>
+</ul>
+<p>If the client is Kubernetes or OpenShift, 
+the program requires that the appropriate <code>kubectl</code> or <code>oc</code> client 
+has been installed locally and that the namespace or project has already been specified.</p>
+<p>The <code>Local</code> option is used when the cloned copy of the database is already been 
+copied inside the POD that it is being shifted to. </p>
+<h2 id="destination-database">Destination Database</h2>
+<p><img alt="Target Database" src="../img/field_source_database.png" /></p>
+<p>The destination database name can be the same as the source database, or 
+a completely different name. Make sure that if you are creating a database
+with a different name that it doesn't currently exist on your target system.
+Otherwise, the target database will be deleted!</p>
+<h2 id="destination-pod-namespace-or-project">Destination Pod Namespace or Project</h2>
+<p><img alt="Namespace" src="../img/field_namespace.png" /></p>
+<p>In Kubernetes deployments, the location of a pod is associated with 
+a namespace, while in OpenShift deployments, the pod is associated with
+a project.</p>
+<p>When authenticating to a Kubernetes or OpenShift environment, it is 
+recommended that the local client be connected to the project or 
+namespace that the Db2U pod is running in. </p>
+<p>If you do not supply a namespace or project value, the Db2 Shift program
+will assume that you are already connected to that project. If this is not
+the case, the program will stop with an error when it attempts to find the 
+pod. </p>
+<p>To have Db2 Shift connect to the appropriate project or namespace, 
+supply the value of the namespace or project using this option.</p>
+<h2 id="destination-server-pod">Destination Server (POD)</h2>
+<p><img alt="Target Server" src="../img/field_pod_name.png" /></p>
+<p>For deployments to OpenShift, Kubernetes, or CP4D, you must supply the name
+of the POD that Db2U is running in. The OpenShift or Kubernetes client should
+be used to connect to the target namespace or project before issuing the 
+Db2 Shift command.      </p>
+<h2 id="metadata-generation">Metadata Generation</h2>
+<p><img alt="Meta Data" src="../img/field_metadata.png" /></p>
+<p>The Db2 Shift command generates metadata that is used during the shift process. This metadata is key to determining which
+objects need to be moved from a source to destination as well as validating that the source can be successfully moved.</p>
+<p>Generating metadata requires access to the source and destination systems. If for some reason the connection to the 
+source or destination is unavailable, the existing metadata files can still be used. In most cases you will not need to 
+adjust these settings unless you have encountered a shift error.</p>
+<h3 id="refresh">Refresh</h3>
+<p><img alt="Meta Data" src="../img/field_metadata.png" /></p>
+<p>The <code>Refresh</code> option determines whether or not the existing metadata is refreshed. The default is value 
+for the Meta Data field is <code>Refresh</code>. The <code>Refresh</code> option will 
+delete any existing metadata files and recreate them on your system during the shift operation. </p>
+<p>If you are importing settings files from other systems, or if you need to rerun the shift process without regenerating the files, use the <code>None</code> option. When Db2 Shift executes it will use the existing metadata in the working directory and 
+attempt to use those settings. </p>
+<p><img alt="Meta Data" src="../img/field_no_metadata.png" /></p>
+<p>One scenario that involves the use of <code>None</code> occurs when a shift operation fails at the target OC/Kubernetes pod
+because of a communication error. The database at the destination will be left in an inconsistent state and must be rebuilt
+by the shift process. The settings for the destination database can no longer be retrieved because the database cannot be 
+started. Because of this reason, you must use the existing destination settings that were generated when you first ran the
+Db2 Shift command.</p>
+<h3 id="generate-settings">Generate Settings</h3>
+<p><img alt="Meta Data" src="../img/field_settings_only.png" /></p>
+<p>The <code>Settings Only</code> option will generate the meta files but will prevent Db2 Shift from continuing execution after the metadata files have been created. </p>
+<h3 id="verification">Verification</h3>
+<p><img alt="Meta Data" src="../img/field_verify.png" /></p>
+<p>The <code>Verify</code> option will generate the metadata files and check the connectivity and all settings and then stop
+execution. If <code>Verify</code> completes successfully, the Db2 Shift command will be able to execute the shift process.</p>
+<h2 id="hadr-setup">HADR Setup</h2>
+<p><img alt="HADR" src="../img/field_hadr.png" /></p>
+<p>When HADR mode is selected, the database will be copied over to the target location and initialized as an HADR secondary. 
+The database can now be
+connected with the primary database as an HADR pair and participate in failover or readonly applications. </p>
+<p>This option cannot be used if your database needs to be migrated or if the database needs to be renamed.    </p>
+<h2 id="stored-procedures-and-functions">Stored Procedures and Functions</h2>
+<p><img alt="Threading" src="../img/field_routines.png" /></p>
+<p>By default, the Db2 Shift command will automatically move all external stored procedures and functions 
+that are found in the <code>$HOME/sqllib/function</code> path to the new destination. All SQLPL and PL/SQL routines 
+are moved as part of the database move, so there is no migration required for those routines. </p>
+<p>Select this option to prevent any external functions being moved to the destination.</p>
+<h2 id="performance-threading">Performance: Threading</h2>
+<p><img alt="Threading" src="../img/field_threads.png" /></p>
+<p>The copy phase of the Db2 Shift program is able to use multiple threads to transmit data to a destination. 
+This settings allows you to increase
+the parallelism up to 8 threads. As you increase the number of threads, the amount of data being transmitted
+increases, at the expense of greater CPU usage and network congestion. The default value is 4 which strikes a balance between
+overhead and network performance.</p>
+<h2 id="performance-compression">Performance: Compression</h2>
+<p><img alt="Threading" src="../img/field_compression.png" /></p>
+<p>RSYNC compresses the data during the transfer process to allow for faster
+movement of data. The amount of compression can be adjusted from 0 to 9
+with 0 turning off compression and values between 1 and 9 increasing the
+amount of compression applied to the data. Higher compression values will
+result in more CPU usage and may not significantly reduce the size of the
+datastream. </p>
+<p>A value of 4 has been found to be a good compromise between 
+compression overhead and data size. For slow networks, 
+a higher value may reduce transmission times at the expense of increased CPU overhead.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../guideploytoinstance/" class="btn btn-neutral float-right" title="UI Deploy a Clone to an Instance">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../guiclone/" class="btn btn-neutral" title="UI Clone a Database"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../guiclone/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../guideploytoinstance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

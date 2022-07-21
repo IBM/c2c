@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>HADR Setup Instance to Pod - Click to Containerize</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "HADR Setup Instance to Pod";
+    var mkdocs_page_input_path = "hadrpod.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Click to Containerize</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites/">Pre-Requisites</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Command Line</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../syntax/">Db2 Shift Syntax</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../reference/">Options Reference</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Command Line Scenarios</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../scenarios/">Db2 Shift Scenarios</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../shiftpod/">Db2 Shift to Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../shiftinstance/">Db2 Shift to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../clone/">Clone a Database</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../deploypod/">Deploy a Clone to a Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../deployinstance/">Deploy a Clone to an Instance</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">HADR Setup Instance to Pod</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#mode-option">Mode Option</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#target-client-instance-to-pod">Target Client (Instance to POD)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#source-database">Source Database</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hadr-source-and-destination-server">HADR Source and Destination Server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hadr-ports">HADR ports</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#destination-server-pod">Destination Server (POD)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#destination-pod-namespace-or-project">Destination Pod Namespace or Project</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../hadrinstance/">HADR Setup Instance to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ldapdmc/">LDAP and DMC Initialization</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../clonecopy/">Clone Copying</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">User Interface Scenarios</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../gui/">User Interface Overvew</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guishifttopod/">UI Shift to POD</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guishifttoinstance/">UI Shift to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guiclone/">UI Clone a Database</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guideploytopod/">UI Deploy a Clone to a Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guideploytoinstance/">UI Deploy a Clone to an Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guihadrpod/">UI HADR Setup Instance to Pod</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guihadrinstance/">UI HADR Setup Instance to Instance</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guildapdmc/">UI LDAP and DMC Initialization</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../guiclonecopy/">UI Clone Copying</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Reference</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../reference/">Options Reference</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../disclaimer/">Disclaimer</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Click to Containerize</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Command Line Scenarios &raquo;</li>
+        
+      
+    
+    <li>HADR Setup Instance to Pod</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="initialize-hadr-between-source-and-target-pod">Initialize HADR between Source and Target POD</h1>
+<p>This Db2 Shift option will take a source and destination (POD)
+database and start the HADR service between them. The Db2u pod must have been created 
+with the following setting during the shift step.</p>
+<p>Syntax: <code>--hadr</code>
+<img alt="Mode" src="../img/field_move_hadr.png" /></p>
+<p>The panel requires the following information:</p>
+<ul>
+<li>The source database name and server</li>
+<li>The destination POD and server details</li>
+</ul>
+<p>The syntax for initiating the HADR connection between two Db2 servers is:</p>
+<pre><code class="language-bash">db2shift
+
+    Required Options     
+
+    --mode=hadr_setup  
+    --dest-type=POD
+    --oc or --kubectl                                                                                       
+    --source-dbname=flights
+    --source-hadr-host=some.server.com
+    --source-hadr-port=3700  
+    --dest-server=c-demo-db2u-0
+    --dest-hadr-host=oc.server.com
+    --dest-hadr-port=3700
+
+    Optional Settings
+
+    --dest-namespace=db2u
+</code></pre>
+
+<p>The panel that provides this capability:</p>
+<p><img alt="ShiftPOD" src="../img/c2c_hadr_pod.png" /></p>
+<h2 id="mode-option">Mode Option</h2>
+<p>Syntax: <code>--mode=hadr_setup</code></p>
+<p>The HADR option is used to initialize and start HADR between a source and target server. This step
+would be run after the database has been shifted to the new location. This option is 
+not used for the initial HADR setup of the target system. The target database must be
+created with the <code>--hadr</code> option in order for it be placed into the correct mode for
+HADR communication. The <code>--hadr</code> is enabled for pods with the Move Database for HADR
+option in the menu.
+<img alt="Mode" src="../img/field_move_hadr.png" /></p>
+<h2 id="target-client-instance-to-pod">Target Client (Instance to POD)</h2>
+<p>Syntax: <code>--oc</code>, <code>--kubectl</code>
+<img alt="OC Client" src="../img/field_oc_k8s.png" /></p>
+<p>The pod client for a deploy (clone) operation must be 
+supplied as part of the Db2 Shift command. Only one of the following 
+clients must be used:</p>
+<ul>
+<li><code>--oc</code> OpenShift Destination</li>
+<li><code>--kubectl</code> Kubernetes Destination</li>
+</ul>
+<p>If the client is Kubernetes (<code>--kubectl</code>) or OpenShift (<code>--oc</code>), 
+the program requires that the appropriate <code>kubectl</code> or <code>oc</code> client 
+has been installed locally and that the namespace or project has already been specified.</p>
+<h2 id="source-database">Source Database</h2>
+<p>Syntax: <code>--source-database=""</code>
+<img alt="Source Database" src="../img/field_source_database.png" /></p>
+<p>The source database is the name of the database that you want to setup HADR
+with on the source and destination servers. Note that the database name 
+must be same at the both locations. </p>
+<p><strong>Alert!</strong>
+</br>
+If you are shifting a database to Cloud Pak for Data, then the cloned database must must have <code>db2inst1</code> as the INSTANCE userid. See the section on Cloning a database to make sure that the proper authorities have been
+granted to the <code>db2inst1</code> userid.</p>
+<h2 id="hadr-source-and-destination-server">HADR Source and Destination Server</h2>
+<p>Syntax: <code>--source-hadr-server=""</code>, <code>--dest-hadr-server=""</code>
+<img alt="HADR Source Server" src="../img/field_hadr_source_server.png" />
+<img alt="HADR Target Server" src="../img/field_hadr_target_server.png" /></p>
+<p>For HADR setup, the Db2 Shift command requires the IP or symbolic
+name of the source server that will be used in an HADR setup. This 
+server is referred to as the primary server. </p>
+<p>If the destination server is a standard Db2 instance, use the IP address of the server. If the destination 
+target is an OpenShift or Kubernetes cluster, use the address of the load balancer.</p>
+<h2 id="hadr-ports">HADR ports</h2>
+<p>Syntax: <code>--source-hadr-port=#</code>, <code>--dest-hadr-port=#</code>
+<img alt="HADR Source Port" src="../img/field_hadr_source_port.png" />
+<img alt="HADR Target Port" src="../img/field_hadr_target_port.png" /></p>
+<p>HADR communicates over a port which is different than the Db2
+instance. You must supply the source and destination port numbers
+that Db2 will communicate between the HADR servers. The default
+port number is 3700 for HADR communications, but verify the value. The target
+port number will also be required.</p>
+<h2 id="destination-server-pod">Destination Server (POD)</h2>
+<p>Syntax: <code>--dest-server="pod_name"</code>
+<img alt="Target Server" src="../img/field_pod_name.png" /></p>
+<p>For deployments to OpenShift, Kubernetes, or CP4D, you must supply the name
+of the POD that Db2U is running in. The OpenShift or Kubernetes client should
+be used to connect to the target namespace or project before issuing the 
+Db2 Shift command. </p>
+<h2 id="destination-pod-namespace-or-project">Destination Pod Namespace or Project</h2>
+<p>Syntax: <code>--dest-namespace=""</code>, <code>--dest-project=""</code>
+<img alt="Namespace" src="../img/field_namespace.png" /></p>
+<p>In Kubernetes deployments, the location of a pod is associated with 
+a namespace, while in OpenShift deployments, the pod is associated with
+a project.</p>
+<p>When authenticating to a Kubernetes or OpenShift environment, it is 
+recommended that the local client be connected to the project or 
+namespace that the Db2U pod is running in. </p>
+<p>If you do not supply a namespace or project value, the Db2 Shift program
+will assume that you are already connected to that project. If this is not
+the case, the program will stop with an error when it attempts to find the 
+pod. </p>
+<p>To have Db2 Shift connect to the appropriate project or namespace, 
+supply the value of the namespace or project using this option.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../hadrinstance/" class="btn btn-neutral float-right" title="HADR Setup Instance to Instance">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../deployinstance/" class="btn btn-neutral" title="Deploy a Clone to an Instance"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../deployinstance/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../hadrinstance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
