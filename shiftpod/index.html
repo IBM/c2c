@@ -223,22 +223,37 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../gui/" class="md-nav__link">
+        User Interface Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_5">
           Command Line
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Command Line" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Command Line
         </label>
@@ -291,20 +306,20 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
       
-        <label class="md-nav__link" for="__nav_5">
-          Command Line Scenarios
+        <label class="md-nav__link" for="__nav_6">
+          Shift Scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Command Line Scenarios" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+      <nav class="md-nav" aria-label="Shift Scenarios" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
-          Command Line Scenarios
+          Shift Scenarios
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -315,7 +330,7 @@
   
     <li class="md-nav__item">
       <a href="../scenarios/" class="md-nav__link">
-        Db2 Shift Scenarios
+        Scenario Overview
       </a>
     </li>
   
@@ -362,11 +377,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mode-option" class="md-nav__link">
-    Mode Option
+  <a href="#mode-option-command-line-and-ui" class="md-nav__link">
+    Mode Option (Command Line and UI)
   </a>
   
-    <nav class="md-nav" aria-label="Mode Option">
+    <nav class="md-nav" aria-label="Mode Option (Command Line and UI)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -377,8 +392,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#move-database-and-set-up-ldap-and-dmc-settings" class="md-nav__link">
-    Move Database and Set up LDAP and DMC Settings
+  <a href="#move-database-and-set-up-ldap-and-dmc-settings-cp4d" class="md-nav__link">
+    Move Database and Set up LDAP and DMC Settings (CP4D)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-database-for-hadr-setup" class="md-nav__link">
+    Move Database for HADR Setup
   </a>
   
 </li>
@@ -389,119 +411,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#target-client-instance-to-pod" class="md-nav__link">
-    Target Client (Instance to POD)
+  <a href="#destination-type-command-line-only" class="md-nav__link">
+    Destination Type (Command Line Only)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#source-database" class="md-nav__link">
-    Source Database
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#source-or-instance-owner" class="md-nav__link">
-    Source or Instance Owner
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-database" class="md-nav__link">
-    Destination Database
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-server-pod" class="md-nav__link">
-    Destination Server (POD)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#stored-procedures-and-functions" class="md-nav__link">
-    Stored Procedures and Functions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-pod-namespace-or-project" class="md-nav__link">
-    Destination Pod Namespace or Project
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hadr-setup" class="md-nav__link">
-    HADR Setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#synchronization-options" class="md-nav__link">
-    Synchronization Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-generation" class="md-nav__link">
-    Metadata Generation
-  </a>
-  
-    <nav class="md-nav" aria-label="Metadata Generation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#blank-slate" class="md-nav__link">
-    Blank Slate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-settings" class="md-nav__link">
-    Generate Settings
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verification" class="md-nav__link">
-    Verification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#online-or-offline-move" class="md-nav__link">
-    Online or Offline Move
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-threading" class="md-nav__link">
-    Performance: Threading
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-compression" class="md-nav__link">
-    Performance: Compression
+  <a href="#settings-command-line-and-ui" class="md-nav__link">
+    Settings (Command Line and UI)
   </a>
   
 </li>
@@ -640,169 +558,10 @@
   
   
   
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          User Interface Scenarios
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="User Interface Scenarios" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          User Interface Scenarios
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../gui/" class="md-nav__link">
-        User Interface Overvew
+      <a href="../bestpractices/" class="md-nav__link">
+        Best Practices
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guishifttopod/" class="md-nav__link">
-        UI Shift to POD
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guishifttoinstance/" class="md-nav__link">
-        UI Shift to Instance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guiclone/" class="md-nav__link">
-        UI Clone a Database
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guideploytopod/" class="md-nav__link">
-        UI Deploy a Clone to a Pod
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guideploytoinstance/" class="md-nav__link">
-        UI Deploy a Clone to an Instance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guihadrpod/" class="md-nav__link">
-        UI HADR Setup Instance to Pod
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guihadrinstance/" class="md-nav__link">
-        UI HADR Setup Instance to Instance
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guildapdmc/" class="md-nav__link">
-        UI LDAP and DMC Initialization
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guiclonecopy/" class="md-nav__link">
-        UI Clone Copying
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -818,18 +577,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_7">
+        <label class="md-nav__link" for="__nav_8">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
+        <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
@@ -911,11 +670,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mode-option" class="md-nav__link">
-    Mode Option
+  <a href="#mode-option-command-line-and-ui" class="md-nav__link">
+    Mode Option (Command Line and UI)
   </a>
   
-    <nav class="md-nav" aria-label="Mode Option">
+    <nav class="md-nav" aria-label="Mode Option (Command Line and UI)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -926,8 +685,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#move-database-and-set-up-ldap-and-dmc-settings" class="md-nav__link">
-    Move Database and Set up LDAP and DMC Settings
+  <a href="#move-database-and-set-up-ldap-and-dmc-settings-cp4d" class="md-nav__link">
+    Move Database and Set up LDAP and DMC Settings (CP4D)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#move-database-for-hadr-setup" class="md-nav__link">
+    Move Database for HADR Setup
   </a>
   
 </li>
@@ -938,119 +704,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#target-client-instance-to-pod" class="md-nav__link">
-    Target Client (Instance to POD)
+  <a href="#destination-type-command-line-only" class="md-nav__link">
+    Destination Type (Command Line Only)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#source-database" class="md-nav__link">
-    Source Database
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#source-or-instance-owner" class="md-nav__link">
-    Source or Instance Owner
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-database" class="md-nav__link">
-    Destination Database
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-server-pod" class="md-nav__link">
-    Destination Server (POD)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#stored-procedures-and-functions" class="md-nav__link">
-    Stored Procedures and Functions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-pod-namespace-or-project" class="md-nav__link">
-    Destination Pod Namespace or Project
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hadr-setup" class="md-nav__link">
-    HADR Setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#synchronization-options" class="md-nav__link">
-    Synchronization Options
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-generation" class="md-nav__link">
-    Metadata Generation
-  </a>
-  
-    <nav class="md-nav" aria-label="Metadata Generation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#blank-slate" class="md-nav__link">
-    Blank Slate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-settings" class="md-nav__link">
-    Generate Settings
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verification" class="md-nav__link">
-    Verification
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#online-or-offline-move" class="md-nav__link">
-    Online or Offline Move
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-threading" class="md-nav__link">
-    Performance: Threading
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-compression" class="md-nav__link">
-    Performance: Compression
+  <a href="#settings-command-line-and-ui" class="md-nav__link">
+    Settings (Command Line and UI)
   </a>
   
 </li>
@@ -1100,7 +762,7 @@ will require the following information:</p>
     --hadr
     --online or --offline
     --threads=4
-    --compress-level=4
+    --compress-level=0
     --exclude-functions
     --sync=[start_sync, rerun_sync, finish_sync]
     --blank-slate=[true|false] --gen-settings
@@ -1109,20 +771,16 @@ will require the following information:</p>
 
 <p>The panel that provides this capability:</p>
 <p><img alt="ShiftPOD" src="../img/c2c_shift_pod.png" /></p>
-<h2 id="mode-option">Mode Option</h2>
+<h2 id="mode-option-command-line-and-ui">Mode Option (Command Line and UI)</h2>
 <p>The MODE option determines what steps the Db2 Shift program will take to 
 move your database to the new location. The following are the values that
 move can have.</p>
-<p>Syntax: <code>--mode=move</code>
-<img alt="Mode" src="../img/field_move_db.png" /></p>
-<p>The MOVE option will take a copy of your Db2 database and copy it into the
-target Db2U container or instance. No other processing is done with the database.</p>
 <h3 id="move-database-only">Move Database Only</h3>
 <p>Syntax: <code>--mode=move</code>
 <img alt="Mode" src="../img/field_move_db.png" /></p>
 <p>The MOVE option will take a copy of your Db2 database and copy it into the
 target Db2U container or instance. No other processing is done with the database.</p>
-<h3 id="move-database-and-set-up-ldap-and-dmc-settings">Move Database and Set up LDAP and DMC Settings</h3>
+<h3 id="move-database-and-set-up-ldap-and-dmc-settings-cp4d">Move Database and Set up LDAP and DMC Settings (CP4D)</h3>
 <p>Syntax: <code>--mode=all</code>
 <img alt="Mode" src="../img/field_move_all.png" /></p>
 <p>If you choose the ALL option, the database will be moved and the program
@@ -1131,222 +789,35 @@ is equivalent to running <code>mode=move</code> and <code>mode=sec_and_monitor</
 after another. The ALL option is necessary in CP4D environments where the
 LDAP settings need to be updated and the DMC console needs to be reset to
 recognize the new database.</p>
-<h2 id="target-client-instance-to-pod">Target Client (Instance to POD)</h2>
-<p>Syntax: <code>--oc</code>, <code>--kubectl</code>
-<img alt="OC Client" src="../img/field_oc_k8s.png" /></p>
-<p>The pod client for a deploy (clone) operation must be 
-supplied as part of the Db2 Shift command. Only one of the following 
-clients must be used:</p>
-<ul>
-<li><code>--oc</code> OpenShift Destination</li>
-<li><code>--kubectl</code> Kubernetes Destination</li>
-</ul>
-<p>If the client is Kubernetes (<code>--kubectl</code>) or OpenShift (<code>--oc</code>), 
-the program requires that the appropriate <code>kubectl</code> or <code>oc</code> client 
-has been installed locally and that the namespace or project has already been specified.</p>
-<h2 id="source-database">Source Database</h2>
-<p>Syntax: <code>--source-database=""</code>
-<img alt="Source Database" src="../img/field_source_database.png" /></p>
-<p>The source database is the name of the database that you want to move to
-the new location. Note that you can have the same or different database
-name at the target. If you provide a different database name at the target,
-the program will copy the database from the source and place it on the
-target and use the existing name.</p>
-<p><strong>Alert!</strong>
-</br>
-If you are shifting a database to Cloud Pak for Data, and your INSTANCE userid is <strong>not</strong> db2inst1, you 
-must execute the following SQL commands from a userid that has SECADM authority:</p>
-<pre><code>GRANT SECADM ON DATABASE TO db2inst1
-GRANT DBADM  ON DATABASE TO db2inst1 
-</code></pre>
-<p>The <code>db2inst1</code> userid does not need to exist in the Operating system in order to grant these privileges to the userid. This
-requirement does not apply to other Db2 Shift environments. If <code>db2inst1</code> is not defined as a <code>SECADM</code> and <code>DBADM</code> user in the
-database, the Data Management Console feature of CP4D will not be able to access the database nor will it be able to monitor it.</p>
-<h2 id="source-or-instance-owner">Source or Instance Owner</h2>
-<p>Syntax: <code>--source-owner="instance name"</code>
-<img alt="Source Owner" src="../img/field_source_owner.png" /></p>
-<p>The Db2 Shift program makes the assumption that the current userid you are logged into
-is the owner of the instance. This is necessary due to the requirement
-to access the underlying files that are used by Db2. If you supply the 
-source owner value, Db2 Shift will double check that you are working in the correct
-instance and the settings files are consistent.</p>
-<h2 id="destination-database">Destination Database</h2>
-<p>Syntax: <code>--dest-database=""</code>
-<img alt="Target Database" src="../img/field_source_database.png" /></p>
-<p>The destination database name can be the same as the source database, or 
-a completely different name. Make sure that if you are creating a database
-with a different name that it doesn't currently exist on your target system.
-Otherwise, the target database will be deleted!</p>
-<h2 id="destination-server-pod">Destination Server (POD)</h2>
-<p>Syntax: <code>--dest-server="pod_name"</code>
-<img alt="Target Server" src="../img/field_pod_name.png" /></p>
-<p>For deployments to OpenShift, Kubernetes, or CP4D, you must supply the name
-of the POD that Db2U is running in. The OpenShift or Kubernetes client should
-be used to connect to the target namespace or project before issuing the 
-Db2 Shift command. </p>
-<h2 id="stored-procedures-and-functions">Stored Procedures and Functions</h2>
-<p>Syntax: <code>--exclude-functions</code>
-<img alt="Threading" src="../img/field_routines.png" /></p>
-<p>By default, the Db2 Shift command will automatically move all external stored procedures and functions 
-that are found in the <code>$HOME/sqllib/function</code> path to the new destination. All SQLPL and PL/SQL routines 
-are moved as part of the database move, so there is no migration required for those routines. </p>
-<p>Use the exclude flag to prevent any external functions being moved to the destination.</p>
-<h2 id="destination-pod-namespace-or-project">Destination Pod Namespace or Project</h2>
-<p>Syntax: <code>--dest-namespace=""</code>, <code>--dest-project=""</code>
-<img alt="Namespace" src="../img/field_namespace.png" /></p>
-<p>In Kubernetes deployments, the location of a pod is associated with 
-a namespace, while in OpenShift deployments, the pod is associated with
-a project.</p>
-<p>When authenticating to a Kubernetes or OpenShift environment, it is 
-recommended that the local client be connected to the project or 
-namespace that the Db2U pod is running in. </p>
-<p>If you do not supply a namespace or project value, the Db2 Shift program
-will assume that you are already connected to that project. If this is not
-the case, the program will stop with an error when it attempts to find the 
-pod. </p>
-<p>To have Db2 Shift connect to the appropriate project or namespace, 
-supply the value of the namespace or project using this option.</p>
-<h2 id="hadr-setup">HADR Setup</h2>
-<p>Syntax: <code>--hadr</code>
+<h3 id="move-database-for-hadr-setup">Move Database for HADR Setup</h3>
+<p>Syntax: <code>--mode=move --hadr</code>
 <img alt="Mode" src="../img/field_move_hadr.png" /></p>
-<p>When HADR mode is selected, the database will be copied over to the target location and initialized as an HADR secondary. 
-The database can now be connected with the primary database as an HADR pair and participate in failover or readonly applications. </p>
-<p>This option cannot be used if your database needs to be migrated or if the database needs to be renamed.        </p>
-<h2 id="synchronization-options">Synchronization Options</h2>
-<p>Syntax:  <code>--sync=[start_sync, rerun_sync, finish_sync]</code>
-<img alt="Sync Options" src="../img/field_sync.png" /></p>
-<p>The Db2 Shift program has two methods of moving the database to the
-destination. The traditional method is to take one pass at the database
-and move everything at once. During the finishing process, the program
-will briefly suspend the database (depending on settings) and perform
-a final refresh. This last step will pick up any database objects that 
-may have changed over the course of the move.</p>
-<p>The total amount of time the database is suspended is directly related
-to how much information has changed during the shift process. In the 
-event that you have large amount of changes, the final refresh may
-too long an outage. To minimize this outage, you can use the 
-synchronization options provided.</p>
-<p>The default setting is do a complete shift operation without intermediate sync operations.</p>
-<p>To initialize the synchronization option, the first Db2 Shift
-command will use the sync option.</p>
-<p>Syntax: <code>--sync=start_sync</code>
-<img alt="Sync Options" src="../img/field_sync_init.png" /></p>
-<p>This initial step will instruct Db2 Shift to copy all of the 
-required database objects to the target system. Once the copies are 
-complete, the program will end processing and leave the target
-system in an incomplete state. During this process the source
-database is operational and it will <strong>not be suspended</strong>. </p>
-<p>When there is an appropriate moment, the database movement can 
-be finalized with the <code>finish_sync</code> option.</p>
-<p>Syntax: <code>--sync=finish_sync</code>
-<img alt="Sync Options" src="../img/field_sync_finalize.png" /></p>
-<p>The <code>finish_sync</code> option will do one final pass against the source
-database and then it will finalize the database movement on the 
-destination site. During the last pass the finish process will
-<code>suspend</code> the database to get a consistent database environment.
-Once this step completes, the destination database will be 
-available.</p>
-<p>In the event that the source system has high update volumes, there
-may be a need to do multiple sync operations to minimize the
-finalize step. The Db2 Shift command will need to be told
-that it is syncing the database again, but not to start from 
-scratch. The control files generated by the <code>--sync=start_sync</code> option
-will allow Db2 Shift to move database objects that are new
-or have changed since the initial synchronization request. The 
-command to do the sync and only refresh the database objects
-requires the use of the <code>rerun_sync</code> option.</p>
-<p>Syntax: <code>--sync=rerun_sync</code>
-<img alt="Sync Options" src="../img/field_sync_refresh.png" /></p>
-<p>The <code>rerun_sync</code> option indicates to the Db2 Shift program to
-start syncing process to look for delta changes only.</p>
-<p>The <code>--sync=rerun_sync</code> process can be run repeatedly until
-the amount of changes between runs is minimized. When an appropriate
-timeslot is available, the shift can be finalized by using the
-<code>finish_sync</code> option.</p>
-<p>Syntax: <code>--sync=finish_sync</code>
-<img alt="Sync Options" src="../img/field_sync_finalize.png" /></p>
-<p>The <code>finish_sync</code> option will perform the final pass against the source
-database and complete the shift process as before.</p>
-<p>In summary, the standard shift operation will complete in one step (no
-<code>--sync</code> option is used). The <code>--sync=start_sync</code> option allows you 
-to gradually move a database over time. For a gradual
-database shift, use the <code>start_sync</code> option on the first run. This will move
-an initial set of database files to the target. Then use the <code>rerun_sync</code> option
-on subsequent runs to copy any files that may have been added or changed to
-the database. When you are ready to finalize the shift, use the <code>finish_sync</code>
-option to gather any remaining files and complete the shift operation on
-the target system.</p>
-<h2 id="metadata-generation">Metadata Generation</h2>
-<p>Syntax: <code>--blank-slate=[true|false]</code>, <code>--gen-settings</code>, <code>--verify-only</code>
-<img alt="Meta Data" src="../img/field_metadata.png" /></p>
-<p>The Db2 Shift command generates metadata that is used during the shift process. This metadata is key to determining which
-objects need to be moved from a source to destination as well as validating that the source can be successfully moved.</p>
-<p>Generating metadata requires access to the source and destination systems. If for some reason the connection to the 
-source or destination is unavailable, the existing metadata files can still be used. In most cases you will not need to 
-adjust these settings unless you have encountered a shift error.</p>
-<h3 id="blank-slate">Blank Slate</h3>
-<p>Syntax: <code>--blank-slate=true</code>
-<img alt="Meta Data" src="../img/field_metadata.png" /></p>
-<p>The <code>--blank-slate</code> option determines whether or not the existing metadata is refreshed. The default is value 
-for <code>--blank-slate</code> is <code>true</code> which will display in the GUI as <code>Refresh</code>. The <code>--blank-slate</code> option will 
-delete any existing metadata files and recreate them on your system during the shift operation. The
-default option is <code>true</code> which will result in new source and destination settings being generated.</p>
-<p>If you are importing settings files from other systems, or if you need to rerun the shift process without regenerating the files,
-use the <code>--blank-slate=false</code> option. When Db2 Shift executes it will use the existing metadata in the working directory and 
-attempt to use those settings. </p>
-<p>Syntax: <code>--blank-slate=false</code>
-<img alt="Meta Data" src="../img/field_no_metadata.png" /></p>
-<p>One scenario that involves the use of <code>--blank-slate=false</code> occurs when a shift operation fails at the target OC/Kubernetes pod
-because of a communication error. The database at the destination will be left in an inconsistent state and must be rebuilt
-by the shift process. The settings for the destination database can no longer be retrieved because the database cannot be 
-started. Because of this reason, you must use the existing destination settings that were generated when you first ran the
-Db2 Shift command.</p>
-<h3 id="generate-settings">Generate Settings</h3>
-<p>Syntax: <code>--blank-slate=true</code>, <code>--gen-settings</code>
-<img alt="Meta Data" src="../img/field_settings_only.png" /></p>
-<p>The <code>--gen-settings</code> (Generate Settings) option is used in conjunction with <code>--blank-slate</code>. The use of <code>--gen-settings</code> 
-will prevent Db2 Shift from continuing execution after the metadata files have been created. </p>
-<h3 id="verification">Verification</h3>
-<p>Syntax: <code>--verify-only</code>
-<img alt="Meta Data" src="../img/field_verify.png" /></p>
-<p>The <code>--verify-only</code> option will generate the metadata files and check the connectivity and all settings and then stop
-execution. If <code>--verify-only</code> completes successfully, the Db2 Shift command will be able to execute the shift process.</p>
-<h2 id="online-or-offline-move">Online or Offline Move</h2>
-<p>Syntax: <code>--online</code>, <code>--offline</code>
-<img alt="Online" src="../img/field_online.png" /></p>
-<p>By default, the Db2 Shift command will suspend the database while it completes the last scan of the files. During this
-period of time, the database will not complete any insert, update, or delete transactions. This will result in a consistent
-database at the destination, but some transactions will not have been committed to the database. If the database
-at the destination must be identical to the source database, then you must choose the <code>--offline</code> option which
-will shut down the database so there will not be any transactions outstanding when the shift is completed. </p>
-<p>Note: The period of time that the database is suspended or stopped is dependent on the changes that have occurred in the
-database from the time the shift operation started to the time when copying of the data is complete. The 
-changes that have occurred during this period of time needs to be captured during the final step. It is during this
-step that the database must be suspended or stopped. During the initial scan the database will remain completely online 
-and will not be impacted by the shift utility from a transaction perspective. However, since there is a large amount of
-disk reads taking place, it may impact bufferpool read performance.</p>
-<p>The <code>--offline</code> mode must be used when shifting a database that requires a migration from an older release of 
-Db2. This option must be specified when shifting Db2 versions 10.5 or 11.1.  </p>
-<h2 id="performance-threading">Performance: Threading</h2>
-<p>Syntax: <code>--threads=[0..8]</code>
-<img alt="Threading" src="../img/field_threads.png" /></p>
-<p>The copy phase of the Db2 Shift program is able to use multiple threads to transmit data to a destination. 
-This settings allows you to increase
-the parallelism up to 8 threads. As you increase the number of threads, the amount of data being transmitted
-increases, at the expense of greater CPU usage and network congestion. The default value is 4 which strikes a balance between
-overhead and network performance.</p>
-<h2 id="performance-compression">Performance: Compression</h2>
-<p>Syntax: <code>--compression=[0..9]</code>
-<img alt="Threading" src="../img/field_compression.png" /></p>
-<p>RSYNC compresses the data during the transfer process to allow for faster
-movement of data. The amount of compression can be adjusted from 0 to 9
-with 0 turning off compression and values between 1 and 9 increasing the
-amount of compression applied to the data. Higher compression values will
-result in more CPU usage and may not significantly reduce the size of the
-datastream. </p>
-<p>A value of 4 has been found to be a good compromise between 
-compression overhead and data size. For slow networks, 
-a higher value may reduce transmission times at the expense of increased CPU overhead.</p>
+<p>When HADR mode is selected, the database will be copied over
+to the target location and initialized as an HADR secondary.
+The database can now be connected with the primary database
+as an HADR pair and participate in failover or readonly
+applications. </p>
+<p>This option cannot be used if your database needs to be migrated or if the database needs to be renamed.</p>
+<h2 id="destination-type-command-line-only">Destination Type (Command Line Only)</h2>
+<p>Syntax <code>--dest-type=POD</code></p>
+<p>The destination is a POD. This setting is only required when using the command line. It
+is automatically generated by the UI. </p>
+<h2 id="settings-command-line-and-ui">Settings (Command Line and UI)</h2>
+<ul>
+<li><a href="../reference/#source-database">Database Name (Source)</a></li>
+<li><a href="../reference/#source-or-instance-owner">Instance Owner</a></li>
+<li><a href="../reference/#target-client-instance-to-pod">Target Location (Pod)</a></li>
+<li><a href="../reference/#destination-database">Database Name (Destination)</a></li>
+<li><a href="../reference/#destination-pod-namespace-or-project">POD Project</a></li>
+<li><a href="../reference/#destination-server-pod">POD Name</a></li>
+<li><a href="../reference/#metadata-generation">Metadata</a></li>
+<li><a href="../reference/#synchronization-options">Synchronization Options</a></li>
+<li><a href="../reference/#stored-procedures-and-functions">Exclude Routines</a></li>
+<li><a href="../reference/#online-or-offline-move">Database Mode</a></li>
+<li><a href="../reference/#threading">Thread Count</a></li>
+<li><a href="../reference/#compression">Compression</a></li>
+<li><a href="../reference/#overrides">Overrides</a></li>
+</ul>
 
               
             </article>
@@ -1362,7 +833,7 @@ a higher value may reduce transmission times at the expense of increased CPU ove
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../scenarios/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Db2 Shift Scenarios" rel="prev">
+        <a href="../scenarios/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Scenario Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1371,7 +842,7 @@ a higher value may reduce transmission times at the expense of increased CPU ove
               <span class="md-footer__direction">
                 Previous
               </span>
-              Db2 Shift Scenarios
+              Scenario Overview
             </div>
           </div>
         </a>
