@@ -14,27 +14,64 @@ that are only found in the UI including:
 
 ## Enabling UI Mode
 
-The Db2 Shift UI Mode is automatically invoked when the `db2shift` command is issued
-without any parameters. Requesting help with the `--help` flag will also display
-help panels using the UI system. 
+The Db2 Shift UI Mode is automatically invoked when the
+`db2shift` command is issued without any parameters.
+Requesting help with the `--help` flag will also display help
+panels using the UI system.
 
-If your terminal session uses Black on White display, the UI will force the display
-to use a BLACK background. If you prefer to use a BLACK on WHITE display, use the 
-`--mono` flag when using the `db2shift` command.
+If your terminal session does not support color, the UI can
+be forced to the display the text as WHITE characters on a
+BLACK background. Use the `--mono` flag when using the
+`db2shift` command.
 
-For terminals that do not show any color, please check the settings in the `TERM` environment variable.
+For terminals that do not show any color, please check the
+settings in the TERM environment variable.
+```
+echo $TERM
+```
+If the results do not show xterm-256color then you will need
+to check what terminal emulations are available with the
+following command:
+```
+toe -a
+```
+This will produce a list of terminal emulations. The
+preferred settings is xterm-256color, but other color
+options may also work.
 
-`echo $TERM`
-
-If the results do not show `xterm-256color` then you will need to update it by issuing the command:
-
-`export TERM=xterm-256color`
+Update the terminal emulation setting by issuing the command:
+```
+export TERM=xterm-256color
+```
 
 To make this change permanent on your system, edit the `~/.bashrc` configuration file in your 
 instance home directory and add the above command to the end of the script. Save the file and then
 issue the following command to change the terminal settings.
+```
+source ~/.bashrc
+```
 
-`source ~/.bashrc`
+If you find the display contains strange characters (white
+boxes instead of underscores for fields) like those on the
+following page, then your OS may not support many of the
+Unicode characters.
+
+![No Unicode](img/c2c_no_unicode.png)
+
+This is an indication that Unicode character set extensions
+have not been installed on the Linux distribution being
+used. The `--mono` flag will change the characters so that
+they are more readable in this environment. When using the
+UI, the following characters will be substituted for the
+graphical characters:
+
+* Underscore (fields) with dots “...”
+* Checkbox selection with asterisk “*” and unselected with dash “-“
+* More (scrollbar) with “+” and previous with “-“
+
+The following screen illustrates the difference in mono mode.
+
+![No Unicode](img/c2c_mono_mode.png)
 
 ## Menu System Overview
 
@@ -82,7 +119,7 @@ separator line, and a list of all active keys. In this example, there are five
 keys:
 
 * `ESC` - Quit
-* `^?` - Field Help
+* `^F` - Field Help
 * `^D` - Select Directory
 * `^A` - Analyze
 * `^X` - Review and Execute
@@ -93,9 +130,8 @@ key (break) will always stop execution of the UI and return you to the terminal 
 
 If a letter is provided as an "action" key, press that letter on the keyboard. There is no need to 
 use the shift key. If the letter is proceeded with a carat symbol `^`, this represents the 
-control (CTRL) key on the keyboard. In the above example, the `^?` key requires that you hit the
-control key and the `?` key at the same time. Note that the `?` character would normally require that 
-you use the `SHIFT` key to access it as a text character. In the case of the UI, there is no need to do that.
+control (CTRL) key on the keyboard. In the above example, the `^F` key requires that you hit the
+control key and the `F` key at the same time. 
 
 Some screens may use letters for commands - for example, the bottom of the main screen uses letters
 to switch screens:
@@ -123,6 +159,9 @@ The following keys are used for navigation on a panel:
 * `PGUP/PGDN` - Scroll list up and down when your cursor is in the list. Note that scroll bar on the side indicates if more rows are available.
 * `Shift+Up/Shift+Down` - Same as page up and page down if those keys are not available
 * `SPACEBAR` - Select or deselect a list item or turn a value on or off
+
+On a Mac (OSX), the function key needs to be used with the
+Shift+Up/Down arrow to simulate a Page Up or Page Down key.
 
 ### Text Input
 
@@ -240,7 +279,9 @@ are found in the [Disclaimer](disclaimer.md) section of this documentation.
 
 If you prefer to skip the Disclaimer screen, use the `--accept` option on the Db2 Shift command line:
 
-`db2shift --accept`
+```
+db2shift --accept
+```
 
 ## Help Panels
 
@@ -249,11 +290,14 @@ far lefthand side of the text:
 
 ![Help Panel](img/c2c_help_panel.png)
 
-The up and down arrow indicate that there is text prior to this page and that there is text after this page. Use the
-Page Up and Page Down buttons (or Shift-Up arrow and Shift-Down arrow) to scroll through the help.
+The up and down arrow indicate that there is text prior to
+this page and that there is text after this page. Use the
+Page Up and Page Down buttons (or (fn+)Shift-Up arrow and
+(fn+)Shift-Down arrow) to scroll through the help.
 
-On most panels, pressing `^?` (`CTRL-?`) on a field will display detailed information about that field. For instance,
-pressing `^?` on the follow field:
+On most panels, pressing `^F` (CTRL+F) on a field will display
+detailed information about that field. For instance,
+pressing `^F` on the follow field:
 
 ![Source Database](img/field_source_database.png)
 
@@ -308,6 +352,25 @@ Details of each one of these panels can be found in the links below.
 * [Initialize HADR between Source and Target Instance](guihadrinstance.md)
 * [Initialize DMC and LDAP Authentication for CP4D](guildapdmc.md)
 * [Copy Cloned Databases to a POD](guiclonecopy.md)
+
+Note that not every command line option will be display in
+the UI panel. For instance, the mode option to move a
+database to a pod is automatically generated by the UI so
+there is no requirement for this setting to be supplied.
+
+In addition to using the menu system to navigate to the
+shift scenario you want to perform, you have the option of
+using the following keywords to go directly to a specific
+shift menu:
+
+* --topod – Shift a Db2 database to a Kubernetes, OpenShift or CP4D pod
+* --todb2 – Shift a Db2 database to another Db2 instance
+* --clone – Clone a Db2 database
+* --deploypod – Deploy a clone to a Kubernetes, OpenShift, or CP4D pod
+* --deploydb2 – Deploy a clone to another Db2 instance
+* --hadrpod – Set up connection between source and destination pod
+* --hadrdb2 – Set up connection between source and Db2 instance
+* --logs – View logs from last execution
 
 ## Executing Commands
 
@@ -393,14 +456,22 @@ The Analyze option is found in four of the Db2 Shift Scenarios:
 * Deploy to Pod 
 * Deploy to Instance
 
-When the Analyze function is selected, the Db2 Shift program will gather information from the source and 
-target databases and present a report containing the settings that are different between the environments:
+Note that you cannot run an Analysis step against a database
+that does not currently exist on the target. This applies
+only to shift or clone operations that are being performed
+against a standard Db2 instance and you are requesting that
+the target database be created by the Db2 Shift command.
+
+When the Analyze function is selected, the Db2 Shift program
+will gather information from the source and target databases
+and present a report containing the settings that are
+different between the environments:
 
 ![Buttons](img/c2c_analysis_results.png)
 
 This examples shows many of the errors that can be reported by the Analysis step. Those items in red will
 stop a shift from occurring, while those in yellow are features which might cause an issue when the 
-database is started in the target location. Details of the setting are available by pressing `^?` while
+database is started in the target location. Details of the setting are available by pressing `^F` while
 the cursor is on the line of the configuration parameter:
 
 ![Field Help](img/c2c_analysis_field.png)

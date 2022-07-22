@@ -57,7 +57,7 @@ it to a POD or a Db2 instance. There is no need to be connected to
 the original database because all of the control information is 
 contained within the CLONEs image.
 
-### HADR Setup 
+### HADR Setup Mode
 
 Syntax: `--mode=hadr_setup`
 
@@ -239,7 +239,7 @@ target is an OpenShift or Kubernetes cluster, use the address of the load balanc
 
 ## HADR ports
 
-Syntax: `--source-hadr-port=#`, `--dest-hadr-port=#`
+Syntax: `--source-hadr-port=#`
 ![HADR Source Port](img/field_hadr_source_port.png)
 ![HADR Target Port](img/field_hadr_target_port.png)
 
@@ -247,7 +247,9 @@ HADR communicates over a port which is different than the Db2
 instance. You must supply the source and destination port numbers
 that Db2 will communicate between the HADR servers. The default
 port number is 3700 for HADR communications, but verify the value. The target
-port number will also be required.
+port number is only required when HADR is being initialized between two 
+traditional Db2 instances. If you are connecting to a POD, this value is not
+required because the Db2 Shift program will generate it automatically for you.
 
 ## Destination Pod Namespace or Project
 
@@ -435,25 +437,72 @@ execution. If `--verify-only` completes successfully, the Db2 Shift command will
 Syntax: `--online`, `--offline`
 ![Online](img/field_online.png)
 
-By default, the Db2 Shift command will suspend the database while it completes the last scan of the files. During this
-period of time, the database will not complete any insert, update, or delete transactions. This will result in a consistent
-database at the destination, but some transactions will not have been committed to the database. If the database
-at the destination must be identical to the source database, then you must choose the `--offline` option which
-will shut down the database so there will not be any transactions outstanding when the shift is completed. 
+Db2 Shift provides two options when dealing with the state
+of a database during the shift process:
 
-Note: The period of time that the database is suspended or stopped is dependent on the changes that have occurred in the
-database from the time the shift operation started to the time when copying of the data is complete. The 
-changes that have occurred during this period of time needs to be captured during the final step. It is during this
-step that the database must be suspended or stopped. During the initial scan the database will remain completely online 
-and will not be impacted by the shift utility from a transaction perspective. However, since there is a large amount of
-disk reads taking place, it may impact bufferpool read performance.
+* `--online` - database is online while the shift is taking place
+* `--offline` - database has been shut down
 
-The `--offline` mode must be used when shifting a database that requires a migration from an older release of 
-Db2. This option must be specified when shifting Db2 versions 10.5 or 11.1.  
+By default, the Db2 Shift command assumes you will use
+online mode and will suspend the database while it completes
+the last scan of the files. During this period, the database
+will not complete any insert, update, or delete
+transactions. This will result in a consistent database at
+the destination, but some transactions will not have been
+committed to the database. If the database at the
+destination must be identical to the source database, then
+you must completely shut down the database and choose the
+`--offline` option.
+
+During the last step of the shift process, Db2 Shift will
+search for any updates that may have been applied to the
+database after the initial copying was done. To ensure the
+integrity of the data being copied, the database will be
+placed into a `WRITE SUSPEND` mode. This last step should only
+take a few seconds and the database will be `WRITE RESUMED`
+when the final copy is done.
+
+When the database is suspended, all read activities will
+continue. New connections will not be permitted, but any
+applications that are currently running will be allowed to
+continue. Those transactions that are updating records will
+be temporarily "paused" while the copying is done. Once the
+copy is complete, a suspended application will finish their
+transaction.
+
+The period that the database is suspended or stopped is
+dependent on the changes that have occurred in the database
+from the time the shift operation started to the time when
+copying of the data is complete. The changes that have
+occurred during this period needs to be captured during the
+final step. It is during this step that the database must be
+suspended or stopped. During the initial scan the database
+will remain completely online and will not be impacted by
+the shift utility from a transaction perspective. However,
+since there is a large amount of disk reads taking place, it
+may impact buffer pool read performance.
+
+The offline mode must be used when shifting a database that
+requires a migration from an older release of Db2. This
+option must be specified when shifting Db2 versions 10.5 or
+11.1.
+
+To use offline mode, you must run Db2 Shift against the
+source and target using:
+
+* Shift command with `--verify-only`
+
+This step will generate a copy of the control files needed:
+
+* Db2 Shift operation using the offline mode `--offline`
+
+If you do not create the control files beforehand, the Db2
+Shift operation will not have the necessary control files to
+run the shift.
 
 ## Threading
 
-Syntax: `--threads=[0..8]`
+Syntax: `--threads=[1..8]`
 ![Threading](img/field_threads.png)
 
 The copy phase of the Db2 Shift program is able to use multiple threads to transmit data to a destination. 
@@ -474,9 +523,10 @@ amount of compression applied to the data. Higher compression values will
 result in more CPU usage and may not significantly reduce the size of the
 datastream. 
 
-A value of 4 has been found to be a good compromise between 
-compression overhead and data size. For slow networks, 
-a higher value may reduce transmission times at the expense of increased CPU overhead.
+A value of 4 has been found to be a good compromise between
+compression overhead and data size on slow networks (<1Gb/s). 
+For high-speed networks, a value of 0 is recommended
+unless there is a requirement to reduce network traffic. 
 
 ## Stored Procedures and Functions
 

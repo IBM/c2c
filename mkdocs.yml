@@ -5,11 +5,12 @@ nav:
   - Introduction: "index.md"
   - Pre-Requisites: "prerequisites.md"
   - Installation: "installation.md"
+  - User Interface Overview: "gui.md"
   - Command Line:
     - Db2 Shift Syntax: "syntax.md"
     - Options Reference: "reference.md"
-  - Command Line Scenarios:
-    - Db2 Shift Scenarios: "scenarios.md"
+  - Shift Scenarios:
+    - Scenario Overview: "scenarios.md"
     - Db2 Shift to Pod: "shiftpod.md"
     - Db2 Shift to Instance: "shiftinstance.md"
     - Clone a Database: "clone.md"
@@ -19,17 +20,7 @@ nav:
     - HADR Setup Instance to Instance: "hadrinstance.md"  
     - LDAP and DMC Initialization: "ldapdmc.md"
     - Clone Copying: "clonecopy.md"
-  - User Interface Scenarios:
-      - User Interface Overvew: "gui.md"
-      - UI Shift to POD: "guishifttopod.md"
-      - UI Shift to Instance: "guishifttoinstance.md"
-      - UI Clone a Database: "guiclone.md"
-      - UI Deploy a Clone to a Pod: "guideploytopod.md"
-      - UI Deploy a Clone to an Instance: "guideploytoinstance.md"
-      - UI HADR Setup Instance to Pod: "guihadrpod.md"
-      - UI HADR Setup Instance to Instance: "guihadrinstance.md"
-      - UI LDAP and DMC Initialization: "guildapdmc.md"
-      - UI Clone Copying: "guiclonecopy.md"
+  - Best Practices: "bestpractices.md"
   - Reference:
     - Options Reference: "reference.md"
     - Support: "support.md"

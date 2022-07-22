@@ -15,8 +15,12 @@ The interactive mode provides the ability to generate all of the commands and in
 The interactive mode is invoked when the Db2 Shift command is executed with no parameters, or
 if either the following options are included on the command line:
 
-* --help - Request detailed help information on running the Db2 Shift command
-* --mono - Use a monochrome display format (Black on White) when using the UI
+* `--help` – Request detailed help information on running the Db2 Shift command
+* `--mono` – Use a monochrome display format (White on Black) and non-Unicode character set when using the UI
+* `--accept` – Accept license agreement (no license prompt) 
+* `--version` – Display Version information
+* `--shiftpod`, `--shiftdb2`, `--clone`, `--deploypod`, `--deploydb2`, `--hadrpod`, `--hadrdb2` – Direct link to the Db2 Shift scenario found on the main menu
+* `--logs` – View logs from last shift execution
 
 Details of how to navigate the UI system are found in the [User Inteface Overview](gui.md) section.
 
@@ -27,7 +31,8 @@ The following is a list of all options that are available with the Db2 Shift com
 <pre><code class="language-bash">db2shift
 
    Operation 
-   --mode=[all,move,clone,apply_clone,sec_and_monitor,hadr_setup,push_clone,pull_clone]
+   --mode=[all,move,clone,apply_clone,sec_and_monitor,hadr_setup,
+           push_clone,pull_clone]
 
    UI Mode Only
    --help
