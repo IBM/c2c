@@ -6,6 +6,9 @@ nav:
   - Pre-Requisites: "prerequisites.md"
   - Installation: "installation.md"
   - User Interface Overview: "gui.md"
+  - Authentication:
+    - SSH Authentication: "ssh.md"
+    - Cluster Authentication: "cluster.md"
   - Command Line:
     - Db2 Shift Syntax: "syntax.md"
     - Options Reference: "reference.md"

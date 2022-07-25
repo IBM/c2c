@@ -500,6 +500,29 @@ If you do not create the control files beforehand, the Db2
 Shift operation will not have the necessary control files to
 run the shift.
 
+### Online or Offline Mode Mismatch
+
+Online and Offline checking is performed when you use any of the following Shift  modes:
+
+* Shift to Pod
+* Shift to Instance
+* Clone
+
+If you have specified online mode for a shift, and the database is currently
+offline, the command summary will display an alert message.
+
+![Online](img/c2c_online_offline.png)
+
+Similarly, if you need to run the shift in offline mode, but the database is currently
+online, an alert will be displayed.
+
+![Offline](img/c2c_offline_online.png)
+
+These alerts do not prevent you from running the command. You have the opportunity to
+save the command for later use, or change the status of the Db2 instance in another
+command window. If you do not change the status of the database to match the
+command value, the Db2 Shift command may fail during execution. 
+
 ## Threading
 
 Syntax: `--threads=[1..8]`
