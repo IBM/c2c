@@ -248,12 +248,74 @@
       
       
         <label class="md-nav__link" for="__nav_5">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        SSH Authentication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster/" class="md-nav__link">
+        Cluster Authentication
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
           Command Line
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Command Line" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Command Line
         </label>
@@ -530,6 +592,19 @@
     Online or Offline Move
   </a>
   
+    <nav class="md-nav" aria-label="Online or Offline Move">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-or-offline-mode-mismatch" class="md-nav__link">
+    Online or Offline Mode Mismatch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -586,18 +661,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_7">
           Shift Scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Shift Scenarios" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Shift Scenarios
         </label>
@@ -777,18 +852,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
       
       
       
       
-        <label class="md-nav__link" for="__nav_8">
+        <label class="md-nav__link" for="__nav_9">
           Reference
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Reference" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
+        <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
@@ -1052,6 +1127,19 @@
   <a href="#online-or-offline-move" class="md-nav__link">
     Online or Offline Move
   </a>
+  
+    <nav class="md-nav" aria-label="Online or Offline Move">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-or-offline-mode-mismatch" class="md-nav__link">
+    Online or Offline Mode Mismatch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1372,6 +1460,19 @@
   <a href="#online-or-offline-move" class="md-nav__link">
     Online or Offline Move
   </a>
+  
+    <nav class="md-nav" aria-label="Online or Offline Move">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-or-offline-mode-mismatch" class="md-nav__link">
+    Online or Offline Mode Mismatch
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1789,6 +1890,23 @@ source and target using:</p>
 <p>If you do not create the control files beforehand, the Db2
 Shift operation will not have the necessary control files to
 run the shift.</p>
+<h3 id="online-or-offline-mode-mismatch">Online or Offline Mode Mismatch</h3>
+<p>Online and Offline checking is performed when you use any of the following Shift  modes:</p>
+<ul>
+<li>Shift to Pod</li>
+<li>Shift to Instance</li>
+<li>Clone</li>
+</ul>
+<p>If you have specified online mode for a shift, and the database is currently
+offline, the command summary will display an alert message.</p>
+<p><img alt="Online" src="../img/c2c_online_offline.png" /></p>
+<p>Similarly, if you need to run the shift in offline mode, but the database is currently
+online, an alert will be displayed.</p>
+<p><img alt="Offline" src="../img/c2c_offline_online.png" /></p>
+<p>These alerts do not prevent you from running the command. You have the opportunity to
+save the command for later use, or change the status of the Db2 instance in another
+command window. If you do not change the status of the database to match the
+command value, the Db2 Shift command may fail during execution. </p>
 <h2 id="threading">Threading</h2>
 <p>Syntax: <code>--threads=[1..8]</code>
 <img alt="Threading" src="../img/field_threads.png" /></p>

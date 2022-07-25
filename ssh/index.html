@@ -13,7 +13,7 @@
     
     
       
-        <title>Db2 Shift to Instance - Db2 Click to Containerize</title>
+        <title>SSH Authentication - Db2 Click to Containerize</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#db2-containerization-to-another-db2-instance" class="md-skip">
+        <a href="#password-less-ssh" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Db2 Shift to Instance
+              SSH Authentication
             
           </span>
         </div>
@@ -237,12 +237,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
       
       
@@ -263,11 +265,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ssh/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         SSH Authentication
       </a>
+      
     </li>
   
 
@@ -361,14 +373,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
@@ -417,73 +427,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Db2 Shift to Instance
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../shiftinstance/" class="md-nav__link">
         Db2 Shift to Instance
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mode-option-command-line-only" class="md-nav__link">
-    Mode Option (Command Line Only)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#target-client-command-line-only" class="md-nav__link">
-    Target Client (Command Line Only)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-type-command-line-only" class="md-nav__link">
-    Destination Type (Command Line Only)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#settings-command-line-and-ui" class="md-nav__link">
-    Settings (Command Line and UI)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -705,42 +653,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#mode-option-command-line-only" class="md-nav__link">
-    Mode Option (Command Line Only)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#target-client-command-line-only" class="md-nav__link">
-    Target Client (Command Line Only)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#destination-type-command-line-only" class="md-nav__link">
-    Destination Type (Command Line Only)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#settings-command-line-and-ui" class="md-nav__link">
-    Settings (Command Line and UI)
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -753,79 +665,91 @@
                 
 
 
-<h1 id="db2-containerization-to-another-db2-instance">Db2 Containerization to another Db2 Instance</h1>
-<p>This format of the Db2 Shift will take an existing Db2 database on an on-premise system,
-and shift it to another traditional Db2 system hosted on another on-premise
-server or cloud virtual machine. This does not containerize Db2! The Db2 Shift command 
-requires the following information:</p>
-<ul>
-<li>Source Database details</li>
-<li>Destination location</li>
-<li>Shift Options</li>
-</ul>
-<p>The db2shift program assumes that you are currently connected to the instance
-that has the Db2 database and have ssh connectivity to the target server.</p>
-<p>The syntax for running a direct shift from a Db2 database to a POD is:</p>
-<p><img alt="Shift Instance" src="../img/syntax_shiftdb2.png" /></p>
-<pre><code class="language-bash">db2shift
-
-    Required Options
-
-    --mode=move    
-    --ssh
-    --dest-type=OTHER
-    --source-dbname=flights
-    --source-owner=db2inst1
-    --dest-dbname=db2oltp
-    --dest-server=db2inst1@some.server.com \ 
-
-    Optional Settings
-
-    --hadr
-    --dest-create-db
-    --online or --offline
-    --threads=4
-    --compress-level=0
-    --exclude-functions
-    --sync=[start_sync, rerun_sync, finish_sync]
-    --blank-slate=[true|false] --gen-settings
-    --verify
+<h1 id="password-less-ssh">Password-less SSH</h1>
+<p>The Db2 Shift utility requires the use of password-less SSH in order to shift a database between two
+Db2 instances. SSH is not used when shifting a database to a Db2U instance in OpenShift, Kubernetes
+or Cloud Pak for Data.</p>
+<p>You must set up Password-less SSH between your source server
+and target server in order to use Db2 Shift. The Db2 Shift
+command issues commands to the target server that requires local 
+access and proper authentication. Normally the the ssh command requires
+a password to be supplied whenever you are connecting to a
+server. This can become tedious if you are constantly
+re-connecting to the server to issue a command.</p>
+<p>From a Db2 Shift perspective, the program will never prompt for a password. Db2 Shift requires
+that a password-less SSH connection is established between
+the HOST and TARGET instances. If password-less ssh has not been
+established, the utility will stop and issue an error message.</p>
+<p>To create a password-less connect to another server, you must generate
+an ssh key.</p>
+<p>From a terminal connection on the source machine, issue the following command.</p>
+<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;db2shift@myserver.com&quot;
 </code></pre>
+<p>The value in quotes <code>"db2shift@myserver.com"</code> can be any value you want. 
+This command will generate a ssh key that will be used to
+synchronize with the other server. Output from the command will be similar
+to the following: </p>
+<pre><code>Generating public/private rsa key pair.
 
-<p>The panel that provides this capability:</p>
-<p><img alt="ShiftPOD" src="../img/c2c_shift_instance.png" /></p>
-<h2 id="mode-option-command-line-only">Mode Option (Command Line Only)</h2>
-<p>Syntax: <code>--mode=move</code></p>
-<p>The MODE option determines what steps the Db2 Shift program will take to 
-move your database to the new location. The only valid option is
-<code>move</code> when shifting a database between two Db2 instances.</p>
-<h2 id="target-client-command-line-only">Target Client (Command Line Only)</h2>
-<p>Syntax: <code>--ssh</code></p>
-<p>The client for a deploy (clone) operation must be supplied as part of the Db2 Shift command. 
-If the target is a remote Db2 instance (<code>--ssh</code>), Db2 Shift expects that a passwordless
-ssh environment has been established between the source and target servers.</p>
-<h2 id="destination-type-command-line-only">Destination Type (Command Line Only)</h2>
-<p>Syntax <code>--dest-type=OTHER</code></p>
-<p>The destination is another instance (OTHER). This setting is
-only required when using the command line. It is
-automatically generated by the UI. </p>
-<h2 id="settings-command-line-and-ui">Settings (Command Line and UI)</h2>
-<ul>
-<li><a href="../reference/#source-database">Database Name (Source)</a></li>
-<li><a href="../reference/#source-or-instance-owner">Instance Owner</a></li>
-<li><a href="../reference/#destination-database">Database Name (Destination)</a></li>
-<li><a href="../reference/#force-destination-database-creation">Force Database Creation</a></li>
-<li><a href="../reference/#destination-owner">Destination Owner</a></li>
-<li><a href="../reference/#destination-server-instance">Server Address</a></li>
-<li><a href="../reference/#metadata-generation">Metadata</a></li>
-<li><a href="../reference/#synchronization-options">Synchronization Options</a></li>
-<li><a href="../reference/#hadr-setup">HADR Option</a></li>
-<li><a href="../reference/#stored-procedures-and-functions">Exclude Routines</a></li>
-<li><a href="../reference/#online-or-offline-move">Database Mode</a></li>
-<li><a href="../reference/#threading">Thread Count</a></li>
-<li><a href="../reference/#compression">Compression</a></li>
-<li><a href="../reference/#overrides">Overrides</a></li>
-</ul>
+Enter file in which to save the key (/home/db2inst1/.ssh/id_rsa): 
+</code></pre>
+<p>Use the default value (press Return). If the file exits, it
+will prompt you if you want to override the file (yes).</p>
+<pre><code>/home/db2inst1/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+
+Created directory '/home/db2inst1/.ssh'.
+Enter passphrase (empty for no passphrase): 
+</code></pre>
+<p>Leave this value blank for this and the next question.</p>
+<pre><code>Enter same passphrase again: 
+Your identification has been saved in /home/db2inst1/.ssh/id_rsa.
+Your public key has been saved in /home/db2inst1/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:LvzoiRx5NjnDVpfPC+nyyUCDd6PzAq4GBjGmbKEu+tU db2shift@skytap.com
+The key's randomart image is:
++---[RSA 4096]----+
+|                 |
+|oo               |
+|=o.              |
+|+o     .   .     |
+|o.    . S =      |
+|..o  =.* = =     |
+|o. .+.E.= o o    |
+|.  o.*.Oo* o .   |
+| ...+o+ .+* .    |
++----[SHA256]-----+ 
+</code></pre>
+<p>At this point the key has been generated and must be placed
+into the destination server.  The command used to copy the
+key to destination server is called <code>ssh-copy-id</code>. Issue the
+<code>ssh-copy-id</code> command and include the userid and server name that
+you want to create the connection with.</p>
+<pre><code>ssh-copy-id db2inst1@10.0.0.2
+
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &quot;/home/db2inst1/.ssh/id_rsa.pub&quot;
+
+The authenticity of host '10.0.0.2 (10.0.0.2)' can't be established.
+ECDSA key fingerprint is SHA256:+GJj8KYH4RS1zdaJ+McoZTCz493XdaP3M56u3uQOPKU.
+ECDSA key fingerprint is MD5:43:b5:e8:b7:fd:83:7d:ac:cf:4c:44:c3:9d:57:6a:30.
+Are you sure you want to continue connecting (yes/no)? 
+</code></pre>
+<p>Make sure to answer yes to continue connecting.</p>
+<pre><code>/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+db2inst1@10.0.0.2's password: 
+</code></pre>
+<p>Enter the password of the target user.</p>
+<pre><code>Number of key(s) added: 1
+
+Now try logging into the machine, with: &quot;ssh 'db2inst1@10.0.0.2'&quot; and check to make sure that only the key(s) you wanted were added.
+</code></pre>
+<p>At this point you have established a password-less
+connection between the source and target servers.You will
+need to repeat this same step for every target server you want 
+to shift Db2 databases to.</p>
+<p>Once you have done this you will be able to run the Db2 Shift command 
+successfully between two Db2 instances.</p>
 
               
             </article>
@@ -841,7 +765,7 @@ automatically generated by the UI. </p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../shiftpod/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Db2 Shift to Pod" rel="prev">
+        <a href="../gui/" class="md-footer__link md-footer__link--prev" aria-label="Previous: User Interface Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -850,20 +774,20 @@ automatically generated by the UI. </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Db2 Shift to Pod
+              User Interface Overview
             </div>
           </div>
         </a>
       
       
         
-        <a href="../clone/" class="md-footer__link md-footer__link--next" aria-label="Next: Clone a Database" rel="next">
+        <a href="../cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster Authentication" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Clone a Database
+              Cluster Authentication
             </div>
           </div>
           <div class="md-footer__button md-icon">
