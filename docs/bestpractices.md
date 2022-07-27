@@ -1,6 +1,9 @@
-# Best Practices
+# Shift Considerations
 
-There are several best practices that we recommend when using the Db2 Shift utility. Many of these recommendations are evolving and updates will be added to this document on a regular basis.
+There are several things you should consider before 
+performing a Db2 Shift. Many of these recommendations
+are evolving and updates will be added to this document on a
+regular basis.
 
 ## Database Migration
 
@@ -149,6 +152,205 @@ The `db2inst1` userid does not need to exist in the Operating
 system to grant these privileges to the userid. Once the
 database is shifted to the new location, the instance owner
 `db2inst1` will have full access to the database.
+
+## Target Db2 Environment
+
+The Db2 Shift program can clone an existing Db2 database into two environments:
+
+* Db2U Pod running on OpenShift, Kubernetes, Cloud Pak for Data
+* Db2 Instance on premise, on a virtual machine (on premise or Cloud)
+
+### Cloning into a Containerized Environment
+
+For instances where you are shifting to a Db2U POD, the POD must already exist and the
+database must have been created. Depending on what you plan to do with the target 
+database, the database name must be:
+
+* The same as the SOURCE database if:
+
+    * You are connecting the source and target with HADR
+    * You are cloning the database into Cloud Pak for Data
+    * You want to keep the same database name
+    
+* Any valid database name
+
+If you move a database (i.e. SAMPLE) into a Db2U POD database called DB2OLTP, the 
+contents of the database SAMPLE will end up in DB2OLTP. In other words, the SAMPLE
+database is shifted and renamed to DB2OLTP. If you want to have the same database name,
+then you must create the database with the same name.
+
+### Cloning into a Traditional Db2 Instance
+
+When cloning a Db2 database into a traditional instance, the Db2 database can already 
+exist, or you can ask that the database be generated for you at shift time. The Db2 
+instance must be available and running on the server.
+
+Syntax: `--dest-create-db`
+![Target Database](img/field_force_create.png)
+
+To create the database at shift time, make sure the select the `Force Database Creation`
+setting in the UI menu or use `--dest-db-create` flag in the command line. The Db2 Shift program
+will attempt to create the database in a directory structure under `/db2_portable` on the 
+target system. 
+
+When cloning into a traditional Db2 instance, similar rules apply to the database name.
+The database name must be:
+
+* The same as the SOURCE database if:
+
+    * You are connecting the source and target with HADR
+    * You want to keep the same database name
+    
+* Any valid database name
+
+## Database Storage Relocation
+
+When shifting a database to a POD or to another Db2 instance, the storage 
+paths will need to be modified in order for Db2 to run. The
+`dft_paths.cfg` file contains information on where the 
+Db2 Shift utility will place database objects on the destination server. If
+the `dft_paths.cfg` file does not already exist in the directory where the
+Db2 Shift utility is running, the file will be created during the first 
+execution of the utility.
+
+The `dft_paths.cfg` file contains 2 sets of paths, one for DB2u Pod/Container
+deployments and the other for standard Instance installs
+classified as server-type `other`.
+
+You can alter the type “other” paths in the file as long as you do not change the 
+`DFT_STORAGE_PATH` variable. The `{}` characters in a path signifies where `$HOME`
+will be substituted into the string. If the `{}` characters are removed, the absolute
+path will be used.
+
+A copy of the file is shown below. The format of the file is:
+
+```
+PATH | Directory | type
+```
+
+Where:
+
+* Path Type - The type of path that the directory represents
+* Directory - The directory that will be used for the path type
+* Target - `pod` for Db2U deployments and `other` for Db2 instance deployments
+ 
+
+```
+MIRRORLOG_PATH|/mnt/bludata0/db2/mirrorlog|pod
+FAILARCHIVE_PATH|/mnt/bludata0/db2/failarchive|pod
+LOGARCHMETH1|/mnt/bludata0/db2/archive_log|pod
+LOGARCHMETH2|/mnt/bludata0/db2/archive_log2|pod
+OVERFLOWLOG_PATH|/mnt/bludata0/db2/overflowlog|pod
+DFT_STORAGE_PATH|/mnt/bludata0/db2/databases/|pod
+OTHER_STORAGE_PATH|/mnt/bludata0/db2/databases/SPATH|pod
+OTHER_LOG_PATH|/mnt/bludata0/db2/dblogs|pod
+MIRRORLOG_PATH|{}/db2_portable/mirror_logs/mirrorlog|other
+FAILARCHIVE_PATH|{}/db2_portable/failarchive|other
+LOGARCHMETH1|{}/db2_portable/archive_log|other
+LOGARCHMETH2|{}/db2_portable/archive_log_mirror|other
+OVERFLOWLOG_PATH|{}/db2_portable/overflow_logs/overflowlog|other
+DFT_STORAGE_PATH|{}|other
+OTHER_LOG_PATH|{}/db2_portable/primary_logs/dblogs|other
+NEW_DB_ON|/db2_portable/databases|other
+OTHER_STORAGE_PATH|{}/db2_portable/alt_store_paths/SPATH|other
+```
+
+You must update this file **prior** to running a shift operation. The Db2 Shift utility
+will use the existing `dft_paths.cfg` file to relocate the directories into the
+target location. 
+
+**Note**: You will need to remove or alter the `dft_paths.cfg` file if you plan to 
+shift multiple databases from the same Db2 instance!
+
+By modifying the `dft_paths.cfg` file, you are able to 
+mount different volumes onto these paths. The following paths can be modified
+to point to volumes at the directory level.
+
+```
+MIRRORLOG_PATH|{}/db2_portable/mirror_logs/
+FAILARCHIVE_PATH|{}/db2_portable/failarchive/
+LOGARCHMETH1|{}/db2_portable/archive_log/
+LOGARCHMETH2|{}/db2_portable/archive_log_mirror/
+OVERFLOWLOG_PATH|{}/db2_portable/overflow_logs/
+OTHER_LOG_PATH|{}/db2_portable/primary_logs/
+```
+
+For alternate Storage paths you can mount the volume at a
+lower level but you must know how many paths will be
+included. This can be determined by looking at the `new0.cfg`
+file after a generate settings run. 
+
+Syntax: `--blank-slate=true`, `--gen-settings`
+![Meta Data](img/field_settings_only.png)
+
+The `--gen-settings` (Generate Settings) option is used in
+conjunction with `--blank-slate`. The use of
+`--gen-settings` will prevent Db2 Shift from continuing
+execution after the metadata files have been created. 
+
+Storage can also be set up by
+MLN or NODE.
+
+```
+OTHER_STORAGE_PATH|{}/db2_portable/alt_store_paths/SPATH[1..N]/NODE000X
+```
+
+For Example:
+
+```
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0000
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0001
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0002
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0003
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0000
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0001
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0002
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0003
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0000
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0001
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0002
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0003
+```
+
+You will have to pre-create the paths at the target server using this pattern
+prior to shifting the database into it.
+
+If you apply the mount at a lower point in the directory
+structure, it will likely be deleted in the Db2 Shift process.
+
+## Encrypted Databases
+
+The Db2 Shift utility can only shift encryption keys that are available
+locally to the database. If your database uses an enterprise key manager then
+you will need to register that key manager at the target pod or instance.
+
+If you are shifting to another Db2 instance or pod that contains multiple 
+databases, you cannot shift the key file. During a shift, the target key file is 
+completely replaced which would remove any keys being used by existing 
+databases at the target location. If you want to shift the database to the new 
+location, you will have to extract the current key and reimport it into the target
+key manager.
+
+## Database, Instance, and Environment Settings
+
+The Db2 Shift utility will maintain all database settings when the 
+database is shifted to a different Db2 instance or pod. However, the 
+Instance and Environment settings are not moved.
+
+The Db2 Shift provides an option to override the target instance settings. 
+If a particular setting needs to be updated, you can provide the value as
+part of the UI or command line. An example of a setting that you may want to
+update during a shift is the `INSTANCE_MEMORY` and the `INTRA_PARALLEL` settings.
+
+You should ensure that any change you make at the instance level are reflected in the
+Db2U POD configuration in the event the Db2U code is replaced.
+
+Environment settings are not handled by the Db2 Shift program. You must ensure that the
+instance or Db2U POD have the appropriate environment variables set before you shift
+the database. For instance, if you are shifting a Db2 database that has Oracle 
+compatibility turned on, you must create an empty Db2 database with this setting 
+turned ON before shifting the original database. There is no way to set the 
+compatibility flag after the database has been created.
 
 ## Threads and Compression
 

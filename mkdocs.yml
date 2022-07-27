@@ -5,6 +5,7 @@ nav:
   - Introduction: "index.md"
   - Pre-Requisites: "prerequisites.md"
   - Installation: "installation.md"
+  - Shift Considerations: "bestpractices.md" 
   - User Interface Overview: "gui.md"
   - Authentication:
     - SSH Authentication: "ssh.md"
@@ -23,7 +24,6 @@ nav:
     - HADR Setup Instance to Instance: "hadrinstance.md"  
     - LDAP and DMC Initialization: "ldapdmc.md"
     - Clone Copying: "clonecopy.md"
-  - Best Practices: "bestpractices.md"
   - Reference:
     - Options Reference: "reference.md"
     - Support: "support.md"
