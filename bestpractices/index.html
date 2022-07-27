@@ -299,6 +299,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#target-db2-environment" class="md-nav__link">
+    Target Db2 Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Target Db2 Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloning-into-a-containerized-environment" class="md-nav__link">
+    Cloning into a Containerized Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloning-into-a-traditional-db2-instance" class="md-nav__link">
+    Cloning into a Traditional Db2 Instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#encrypted-databases" class="md-nav__link">
     Encrypted Databases
   </a>
@@ -812,6 +839,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#target-db2-environment" class="md-nav__link">
+    Target Db2 Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Target Db2 Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cloning-into-a-containerized-environment" class="md-nav__link">
+    Cloning into a Containerized Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloning-into-a-traditional-db2-instance" class="md-nav__link">
+    Cloning into a Traditional Db2 Instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#encrypted-databases" class="md-nav__link">
     Encrypted Databases
   </a>
@@ -1000,6 +1054,57 @@ GRANT DBADM  ON DATABASE TO USER db2inst1
 system to grant these privileges to the userid. Once the
 database is shifted to the new location, the instance owner
 <code>db2inst1</code> will have full access to the database.</p>
+<h2 id="target-db2-environment">Target Db2 Environment</h2>
+<p>The Db2 Shift program can clone an existing Db2 database into two environments:</p>
+<ul>
+<li>Db2U Pod running on OpenShift, Kubernetes, Cloud Pak for Data</li>
+<li>Db2 Instance on premise, on a virtual machine (on premise or Cloud)</li>
+</ul>
+<h3 id="cloning-into-a-containerized-environment">Cloning into a Containerized Environment</h3>
+<p>For instances where you are shifting to a Db2U POD, the POD must already exist and the
+database must have been created. Depending on what you plan to do with the target 
+database, the database name must be:</p>
+<ul>
+<li>
+<p>The same as the SOURCE database if:</p>
+<ul>
+<li>You are connecting the source and target with HADR</li>
+<li>You are cloning the database into Cloud Pak for Data</li>
+<li>You want to keep the same database name</li>
+</ul>
+</li>
+<li>
+<p>Any valid database name</p>
+</li>
+</ul>
+<p>If you move a database (i.e. SAMPLE) into a Db2U POD database called DB2OLTP, the 
+contents of the database SAMPLE will end up in DB2OLTP. In other words, the SAMPLE
+database is shifted and renamed to DB2OLTP. If you want to have the same database name,
+then you must create the database with the same name.</p>
+<h3 id="cloning-into-a-traditional-db2-instance">Cloning into a Traditional Db2 Instance</h3>
+<p>When cloning a Db2 database into a traditional instance, the Db2 database can already 
+exist, or you can ask that the database be generated for you at shift time. The Db2 
+instance must be available and running on the server.</p>
+<p>Syntax: <code>--dest-create-db</code>
+<img alt="Target Database" src="../img/field_force_create.png" /></p>
+<p>To create the database at shift time, make sure the select the <code>Force Database Creation</code>
+setting in the UI menu or use <code>--dest-db-create</code> flag in the command line. The Db2 Shift program
+will attempt to create the database in a directory structure under <code>/db2_portable</code> on the 
+target system. </p>
+<p>When cloning into a traditional Db2 instance, similar rules apply to the database name.
+The database name must be:</p>
+<ul>
+<li>
+<p>The same as the SOURCE database if:</p>
+<ul>
+<li>You are connecting the source and target with HADR</li>
+<li>You want to keep the same database name</li>
+</ul>
+</li>
+<li>
+<p>Any valid database name</p>
+</li>
+</ul>
 <h2 id="encrypted-databases">Encrypted Databases</h2>
 <p>The Db2 Shift utility can only shift encryption keys that are available
 locally to the database. If your database uses an enterprise key manager then
