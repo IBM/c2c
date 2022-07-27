@@ -13,7 +13,7 @@
     
     
       
-        <title>Best Practices - Db2 Click to Containerize</title>
+        <title>Shift Considerations - Db2 Click to Containerize</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#best-practices" class="md-skip">
+        <a href="#shift-considerations" class="md-skip">
           Skip to content
         </a>
       
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Best Practices
+              Shift Considerations
             
           </span>
         </div>
@@ -222,6 +222,144 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Shift Considerations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Shift Considerations
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database-migration" class="md-nav__link">
+    Database Migration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-versus-offline-mode" class="md-nav__link">
+    Online Versus Offline Mode
+  </a>
+  
+    <nav class="md-nav" aria-label="Online Versus Offline Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-mode" class="md-nav__link">
+    Online Mode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-mode" class="md-nav__link">
+    Offline Mode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-ownership" class="md-nav__link">
+    Instance Ownership
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encrypted-databases" class="md-nav__link">
+    Encrypted Databases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-instance-and-environment-settings" class="md-nav__link">
+    Database, Instance, and Environment Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threads-and-compression" class="md-nav__link">
+    Threads and Compression
+  </a>
+  
+    <nav class="md-nav" aria-label="Threads and Compression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threads" class="md-nav__link">
+    Threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-scenario" class="md-nav__link">
+    Test Scenario
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compression" class="md-nav__link">
+    Compression
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../gui/" class="md-nav__link">
@@ -242,18 +380,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_6">
           Authentication
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Authentication" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Authentication
         </label>
@@ -304,18 +442,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_6">
+        <label class="md-nav__link" for="__nav_7">
           Command Line
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Command Line" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Command Line
         </label>
@@ -366,18 +504,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_7">
+        <label class="md-nav__link" for="__nav_8">
           Shift Scenarios
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Shift Scenarios" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
+        <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Shift Scenarios
         </label>
@@ -535,130 +673,6 @@
 
   
   
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Best Practices
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Best Practices
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#database-migration" class="md-nav__link">
-    Database Migration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#online-versus-offline-mode" class="md-nav__link">
-    Online Versus Offline Mode
-  </a>
-  
-    <nav class="md-nav" aria-label="Online Versus Offline Mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#online-mode" class="md-nav__link">
-    Online Mode
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#offline-mode" class="md-nav__link">
-    Offline Mode
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instance-ownership" class="md-nav__link">
-    Instance Ownership
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#threads-and-compression" class="md-nav__link">
-    Threads and Compression
-  </a>
-  
-    <nav class="md-nav" aria-label="Threads and Compression">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#threads" class="md-nav__link">
-    Threads
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test-scenario" class="md-nav__link">
-    Test Scenario
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compression" class="md-nav__link">
-    Compression
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
   
     
     <li class="md-nav__item md-nav__item--nested">
@@ -798,6 +812,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#encrypted-databases" class="md-nav__link">
+    Encrypted Databases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-instance-and-environment-settings" class="md-nav__link">
+    Database, Instance, and Environment Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#threads-and-compression" class="md-nav__link">
     Threads and Compression
   </a>
@@ -845,8 +873,11 @@
                 
 
 
-<h1 id="best-practices">Best Practices</h1>
-<p>There are several best practices that we recommend when using the Db2 Shift utility. Many of these recommendations are evolving and updates will be added to this document on a regular basis.</p>
+<h1 id="shift-considerations">Shift Considerations</h1>
+<p>There are several things you should consider before 
+performing a Db2 Shift. Many of these recommendations
+are evolving and updates will be added to this document on a
+regular basis.</p>
 <h2 id="database-migration">Database Migration</h2>
 <p>The Db2 Shift command will migrate a database from Version
 10.5 and 11.1 to the latest version of Db2 (11.5). Databases
@@ -969,6 +1000,32 @@ GRANT DBADM  ON DATABASE TO USER db2inst1
 system to grant these privileges to the userid. Once the
 database is shifted to the new location, the instance owner
 <code>db2inst1</code> will have full access to the database.</p>
+<h2 id="encrypted-databases">Encrypted Databases</h2>
+<p>The Db2 Shift utility can only shift encryption keys that are available
+locally to the database. If your database uses an enterprise key manager then
+you will need to register that key manager at the target pod or instance.</p>
+<p>If you are shifting to another Db2 instance or pod that contains multiple 
+databases, you cannot shift the key file. During a shift, the target key file is 
+completely replaced which would remove any keys being used by existing 
+databases at the target location. If you want to shift the database to the new 
+location, you will have to extract the current key and reimport it into the target
+key manager.</p>
+<h2 id="database-instance-and-environment-settings">Database, Instance, and Environment Settings</h2>
+<p>The Db2 Shift utility will maintain all database settings when the 
+database is shifted to a different Db2 instance or pod. However, the 
+Instance and Environment settings are not moved.</p>
+<p>The Db2 Shift provides an option to override the target instance settings. 
+If a particular setting needs to be updated, you can provide the value as
+part of the UI or command line. An example of a setting that you may want to
+update during a shift is the <code>INSTANCE_MEMORY</code> and the <code>INTRA_PARALLEL</code> settings.</p>
+<p>You should ensure that any change you make at the instance level are reflected in the
+Db2U POD configuration in the event the Db2U code is replaced.</p>
+<p>Environment settings are not handled by the Db2 Shift program. You must ensure that the
+instance or Db2U POD have the appropriate environment variables set before you shift
+the database. For instance, if you are shifting a Db2 database that has Oracle 
+compatibility turned on, you must create an empty Db2 database with this setting 
+turned ON before shifting the original database. There is no way to set the 
+compatibility flag after the database has been created.</p>
 <h2 id="threads-and-compression">Threads and Compression</h2>
 <p>One area that is still evolving is the use of threads and compression when shifting a database into a cloud environment. The Db2 Shift tool has been set to use default settings that give the best performance in networks that have 1Gb/s throughput. These settings will need to be adjusted based on your network and machine characteristics.
 The following are some general observations from early testing.</p>
@@ -1065,7 +1122,7 @@ initial Db2 Shift tests.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../clonecopy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Clone Copying" rel="prev">
+        <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1074,20 +1131,20 @@ initial Db2 Shift tests.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Clone Copying
+              Installation
             </div>
           </div>
         </a>
       
       
         
-        <a href="../reference/" class="md-footer__link md-footer__link--next" aria-label="Next: Options Reference" rel="next">
+        <a href="../gui/" class="md-footer__link md-footer__link--next" aria-label="Next: User Interface Overview" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Options Reference
+              User Interface Overview
             </div>
           </div>
           <div class="md-footer__button md-icon">
