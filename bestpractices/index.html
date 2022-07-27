@@ -326,6 +326,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#database-storage-relocation" class="md-nav__link">
+    Database Storage Relocation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#encrypted-databases" class="md-nav__link">
     Encrypted Databases
   </a>
@@ -866,6 +873,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#database-storage-relocation" class="md-nav__link">
+    Database Storage Relocation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#encrypted-databases" class="md-nav__link">
     Encrypted Databases
   </a>
@@ -1105,6 +1119,95 @@ The database name must be:</p>
 <p>Any valid database name</p>
 </li>
 </ul>
+<h2 id="database-storage-relocation">Database Storage Relocation</h2>
+<p>When shifting a database to a POD or to another Db2 instance, the storage 
+paths will need to be modified in order for Db2 to run. The
+<code>dft_paths.cfg</code> file contains information on where the 
+Db2 Shift utility will place database objects on the destination server. If
+the <code>dft_paths.cfg</code> file does not already exist in the directory where the
+Db2 Shift utility is running, the file will be created during the first 
+execution of the utility.</p>
+<p>The <code>dft_paths.cfg</code> file contains 2 sets of paths, one for DB2u Pod/Container
+deployments and the other for standard Instance installs
+classified as server-type <code>other</code>.</p>
+<p>You can alter the type “other” paths in the file as long as you do not change the 
+<code>DFT_STORAGE_PATH</code> variable. The <code>{}</code> characters in a path signifies where <code>$HOME</code>
+will be substituted into the string. If the <code>{}</code> characters are removed, the absolute
+path will be used.</p>
+<p>A copy of the file is shown below. The format of the file is:</p>
+<pre><code>PATH | Directory | type
+</code></pre>
+<p>Where:</p>
+<ul>
+<li>Path Type - The type of path that the directory represents</li>
+<li>Directory - The directory that will be used for the path type</li>
+<li>Target - <code>pod</code> for Db2U deployments and <code>other</code> for Db2 instance deployments</li>
+</ul>
+<pre><code>MIRRORLOG_PATH|/mnt/bludata0/db2/mirrorlog|pod
+FAILARCHIVE_PATH|/mnt/bludata0/db2/failarchive|pod
+LOGARCHMETH1|/mnt/bludata0/db2/archive_log|pod
+LOGARCHMETH2|/mnt/bludata0/db2/archive_log2|pod
+OVERFLOWLOG_PATH|/mnt/bludata0/db2/overflowlog|pod
+DFT_STORAGE_PATH|/mnt/bludata0/db2/databases/|pod
+OTHER_STORAGE_PATH|/mnt/bludata0/db2/databases/SPATH|pod
+OTHER_LOG_PATH|/mnt/bludata0/db2/dblogs|pod
+MIRRORLOG_PATH|{}/db2_portable/mirror_logs/mirrorlog|other
+FAILARCHIVE_PATH|{}/db2_portable/failarchive|other
+LOGARCHMETH1|{}/db2_portable/archive_log|other
+LOGARCHMETH2|{}/db2_portable/archive_log_mirror|other
+OVERFLOWLOG_PATH|{}/db2_portable/overflow_logs/overflowlog|other
+DFT_STORAGE_PATH|{}|other
+OTHER_LOG_PATH|{}/db2_portable/primary_logs/dblogs|other
+NEW_DB_ON|/db2_portable/databases|other
+OTHER_STORAGE_PATH|{}/db2_portable/alt_store_paths/SPATH|other
+</code></pre>
+<p>You must update this file <strong>prior</strong> to running a shift operation. The Db2 Shift utility
+will use the existing <code>dft_paths.cfg</code> file to relocate the directories into the
+target location. </p>
+<p><strong>Note</strong>: You will need to remove or alter the <code>dft_paths.cfg</code> file if you plan to 
+shift multiple databases from the same Db2 instance!</p>
+<p>By modifying the <code>dft_paths.cfg</code> file, you are able to 
+mount different volumes onto these paths. The following paths can be modified
+to point to volumes at the directory level.</p>
+<pre><code>MIRRORLOG_PATH|{}/db2_portable/mirror_logs/
+FAILARCHIVE_PATH|{}/db2_portable/failarchive/
+LOGARCHMETH1|{}/db2_portable/archive_log/
+LOGARCHMETH2|{}/db2_portable/archive_log_mirror/
+OVERFLOWLOG_PATH|{}/db2_portable/overflow_logs/
+OTHER_LOG_PATH|{}/db2_portable/primary_logs/
+</code></pre>
+<p>For alternate Storage paths you can mount the volume at a
+lower level but you must know how many paths will be
+included. This can be determined by looking at the <code>new0.cfg</code>
+file after a generate settings run. </p>
+<p>Syntax: <code>--blank-slate=true</code>, <code>--gen-settings</code>
+<img alt="Meta Data" src="../img/field_settings_only.png" /></p>
+<p>The <code>--gen-settings</code> (Generate Settings) option is used in
+conjunction with <code>--blank-slate</code>. The use of
+<code>--gen-settings</code> will prevent Db2 Shift from continuing
+execution after the metadata files have been created. </p>
+<p>Storage can also be set up by
+MLN or NODE.</p>
+<pre><code>OTHER_STORAGE_PATH|{}/db2_portable/alt_store_paths/SPATH[1..N]/NODE000X
+</code></pre>
+<p>For Example:</p>
+<pre><code>/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0000
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0001
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0002
+/home/db2inst2/db2_portable/alt_store_paths/SPATH1/db2inst2/NODE0003
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0000
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0001
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0002
+/home/db2inst2/db2_portable/alt_store_paths/SPATH2/db2inst2/NODE0003
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0000
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0001
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0002
+/home/db2inst2/db2_portable/alt_store_paths/SPATH3/db2inst2/NODE0003
+</code></pre>
+<p>You will have to pre-create the paths at the target server using this pattern
+prior to shifting the database into it.</p>
+<p>If you apply the mount at a lower point in the directory
+structure, it will likely be deleted in the Db2 Shift process.</p>
 <h2 id="encrypted-databases">Encrypted Databases</h2>
 <p>The Db2 Shift utility can only shift encryption keys that are available
 locally to the database. If your database uses an enterprise key manager then
