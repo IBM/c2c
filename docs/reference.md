@@ -59,7 +59,7 @@ contained within the CLONEs image.
 
 ### HADR Setup Mode
 
-Syntax: `--mode=hadr_setup`
+Syntax: `--mode=hadr_setup`, `--mode=hadr_setup`
 
 The HADR option is used to initialize and start HADR between a source and target server. This step
 would be run after the database has been shifted to the new location. This option is 

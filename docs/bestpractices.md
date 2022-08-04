@@ -5,7 +5,7 @@ performing a Db2 Shift. Many of these recommendations
 are evolving and updates will be added to this document on a
 regular basis.
 
-## Database Migration
+## Database Migration and Upgrades
 
 The Db2 Shift command will migrate a database from Version
 10.5 and 11.1 to the latest version of Db2 (11.5). Databases
@@ -202,6 +202,64 @@ The database name must be:
     * You want to keep the same database name
 
 * Any valid database name
+
+## HADR Considerations
+
+The HADR option can be used to create a standby version of the primary
+database for either HA capabilities, or for syncing the source and target until the
+decision is made to move all database workloads to the standby.
+
+Syntax: `--hadr`, `--mode=hadr_setup`
+![Mode](img/field_move_hadr.png)
+![HADR](img/field_hadr.png)
+
+The requirements for creating an HADR pair are:
+
+* The databases must both be at the same level (Upgrade not supported)
+* The primary must have logging enabled and a full backup generated before shifting
+
+```
+update db config for trading using logarchmeth1 DISK:/home/db2inst1/logfiles
+update db config for trading using logindexbuild on
+connect reset
+backup database trading to /dev/null
+```
+
+* Set Read on Standby if required
+
+```
+db2set DB2_HADR_ROS=ON
+db2stop force
+db2start
+```
+
+* Open ports on the primary (3700) and on the secondary only if it is a traditional instance
+
+The steps for creating an HADR primary and standby pair with Db2 Shift are:
+
+1. Run a shift (or clone) to an instance or POD while the database is online
+      * The target database must have the same database name - Db2 Shift will not run if 
+        they have different names
+
+2. Run the HADR setup for POD or Instance
+
+At this point the two databases will be in NEARSYNC mode and will be in an HA configuration
+until you decide to turn the standby into the new primary.
+
+### HADR to CP4D POD
+
+If you choose to use HADR to connect to a standby Db2 running on CP4D, you will need to 
+use the LDAP/DMC utility **after** you have switched the CP4D Db2 POD into the primary.
+
+Syntax: `--mode=sec_and_monitor`
+
+At this point you must enable the LDAP connection to CP4D as well as register the
+database to the Data Management Console on CP4D. While the database was running as 
+a standby database, the LDAP and DMC connections settings could not be updated because the
+database was in read-only mode and needed to be identical to the primary database. 
+After the switch to primary
+status, you are now able to register the database to CP4D and be able to manage it
+from the DMC console.
 
 ## Database Storage Relocation
 

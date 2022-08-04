@@ -1,5 +1,7 @@
 # Introduction 
 
+![C2C Logo](img/c2cbetalogo.png)
+
 The Click to Containerize family encompasses a number of tools that provide customers with the
 ability to quickly modernize their Db2 landscape. The Db2 Shift utility is part of the Click to Containerize
 family and can be used to clone a copy of Db2 into an OpenShift, 
