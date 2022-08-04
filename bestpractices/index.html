@@ -258,8 +258,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#database-migration" class="md-nav__link">
-    Database Migration
+  <a href="#database-migration-and-upgrades" class="md-nav__link">
+    Database Migration and Upgrades
   </a>
   
 </li>
@@ -316,6 +316,26 @@
           <li class="md-nav__item">
   <a href="#cloning-into-a-traditional-db2-instance" class="md-nav__link">
     Cloning into a Traditional Db2 Instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hadr-considerations" class="md-nav__link">
+    HADR Considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="HADR Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadr-to-cp4d-pod" class="md-nav__link">
+    HADR to CP4D POD
   </a>
   
 </li>
@@ -805,8 +825,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#database-migration" class="md-nav__link">
-    Database Migration
+  <a href="#database-migration-and-upgrades" class="md-nav__link">
+    Database Migration and Upgrades
   </a>
   
 </li>
@@ -863,6 +883,26 @@
           <li class="md-nav__item">
   <a href="#cloning-into-a-traditional-db2-instance" class="md-nav__link">
     Cloning into a Traditional Db2 Instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hadr-considerations" class="md-nav__link">
+    HADR Considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="HADR Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadr-to-cp4d-pod" class="md-nav__link">
+    HADR to CP4D POD
   </a>
   
 </li>
@@ -946,7 +986,7 @@
 performing a Db2 Shift. Many of these recommendations
 are evolving and updates will be added to this document on a
 regular basis.</p>
-<h2 id="database-migration">Database Migration</h2>
+<h2 id="database-migration-and-upgrades">Database Migration and Upgrades</h2>
 <p>The Db2 Shift command will migrate a database from Version
 10.5 and 11.1 to the latest version of Db2 (11.5). Databases
 that are at older release levels will need to be migrated to
@@ -1119,6 +1159,59 @@ The database name must be:</p>
 <p>Any valid database name</p>
 </li>
 </ul>
+<h2 id="hadr-considerations">HADR Considerations</h2>
+<p>The HADR option can be used to create a standby version of the primary
+database for either HA capabilities, or for syncing the source and target until the
+decision is made to move all database workloads to the standby.</p>
+<p>Syntax: <code>--hadr</code>, <code>--mode=hadr_setup</code>
+<img alt="Mode" src="../img/field_move_hadr.png" />
+<img alt="HADR" src="../img/field_hadr.png" /></p>
+<p>The requirements for creating an HADR pair are:</p>
+<ul>
+<li>The databases must both be at the same level (Upgrade not supported)</li>
+<li>The primary must have logging enabled and a full backup generated before shifting</li>
+</ul>
+<pre><code>update db config for trading using logarchmeth1 DISK:/home/db2inst1/logfiles
+update db config for trading using logindexbuild on
+connect reset
+backup database trading to /dev/null
+</code></pre>
+<ul>
+<li>Set Read on Standby if required</li>
+</ul>
+<pre><code>db2set DB2_HADR_ROS=ON
+db2stop force
+db2start
+</code></pre>
+<ul>
+<li>Open ports on the primary (3700) and on the secondary only if it is a traditional instance</li>
+</ul>
+<p>The steps for creating an HADR primary and standby pair with Db2 Shift are:</p>
+<ol>
+<li>
+<p>Run a shift (or clone) to an instance or POD while the database is online</p>
+<ul>
+<li>The target database must have the same database name - Db2 Shift will not run if 
+    they have different names</li>
+</ul>
+</li>
+<li>
+<p>Run the HADR setup for POD or Instance</p>
+</li>
+</ol>
+<p>At this point the two databases will be in NEARSYNC mode and will be in an HA configuration
+until you decide to turn the standby into the new primary.</p>
+<h3 id="hadr-to-cp4d-pod">HADR to CP4D POD</h3>
+<p>If you choose to use HADR to connect to a standby Db2 running on CP4D, you will need to 
+use the LDAP/DMC utility <strong>after</strong> you have switched the CP4D Db2 POD into the primary.</p>
+<p>Syntax: <code>--mode=sec_and_monitor</code></p>
+<p>At this point you must enable the LDAP connection to CP4D as well as register the
+database to the Data Management Console on CP4D. While the database was running as 
+a standby database, the LDAP and DMC connections settings could not be updated because the
+database was in read-only mode and needed to be identical to the primary database. 
+After the switch to primary
+status, you are now able to register the database to CP4D and be able to manage it
+from the DMC console.</p>
 <h2 id="database-storage-relocation">Database Storage Relocation</h2>
 <p>When shifting a database to a POD or to another Db2 instance, the storage
 paths will need to be modified in order for Db2 to run. The
