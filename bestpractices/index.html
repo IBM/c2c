@@ -1017,6 +1017,10 @@ that no one can connect to the database.</p>
 use the clone option. A clone copy can be used for an
 upgrade and the database can be write suspended when using
 this mode of operation.</p>
+<p>Make sure to prune your log archive files to minimize the amount of data that is 
+transmitted during the shift step:</p>
+<pre><code>db2 prune history yyyymmdd 
+</code></pre>
 <p>In summary, when shifting a database that needs an upgrade,
 using one of the following techniques:</p>
 <ul>
