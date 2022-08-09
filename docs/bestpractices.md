@@ -42,6 +42,13 @@ use the clone option. A clone copy can be used for an
 upgrade and the database can be write suspended when using
 this mode of operation.
 
+Make sure to prune your log archive files to minimize the amount of data that is 
+transmitted during the shift step:
+
+```
+db2 prune history yyyymmdd 
+```
+
 In summary, when shifting a database that needs an upgrade,
 using one of the following techniques:
 
