@@ -734,25 +734,29 @@ perspective, no additional software is required to run it.</p>
 but it will generate files during the execution of a shift.
 A best practice would be to create a new directory only for
 the purposes of the running the Db2 Shift code.</p>
-<p>The Db2 Shift program is bundled into a single zip file
+<p>The Db2 Shift program is bundled into a single tar file
 which contains version of the code for different Linux
-distributions (there may be more than those listed). </p>
+distributions (there may be more than those listed). Unpacking
+the tar file will create a directory structure that contains the following:</p>
 <ul>
-<li>CentOS 6, Red Hat 6 - db2shift-centos6</li>
-<li>CentOS 7, Red Hat 7 - db2shift-centos7</li>
-<li>CentOS 8, CentOS Stream, Red Hat 8 - db2shift-centos8</li>
-<li>Ubuntu 18.04 - db2shift-ubuntu18</li>
-<li>Ubuntu 20.04 - db2shift-ubuntu20</li>
-<li>SUSE 11.4 - db2shift-suse11</li>
-<li>Power Linux - db2shift-powerLE</li>
+<li>License information</li>
+<li>Documentation</li>
+<li>
+<p>A directory for each distribution of Linux that is supported</p>
+<ul>
+<li>RHEL-6 - CentOS 6, Red Hat 6</li>
+<li>RHEL-7 - CentOS 7, Red Hat 7</li>
+<li>RHEL-8 - CentOS 8, Red Hat 8, CentOS Stream</li>
+<li>Ubuntu-18 - Ubuntu 18.04</li>
+<li>Ubuntu-20 - Ubuntu 20.04</li>
+<li>Ubuntu-22 - Ubuntu 22.04 </li>
+<li>SUSE-15 - openSUSE 15, SUSE 15</li>
+<li>PowerLE - Power Linux LE </li>
 </ul>
-<p><strong>Note</strong>: The current Technical Preview site provides the
-ability to download individual versions of the Db2 Shift
-program rather than a bundled zip file.</p>
-<p>Rename the Db2 Shift version that is suitable for your
-environment to db2shift:</p>
-<pre><code>mv db2shift-centos7 db2shift
-</code></pre>
+</li>
+</ul>
+<p>Each directory will contain the <code>db2shift</code> program suitable for that 
+Linux distribution.</p>
 <p>Place the program into its own directory and make sure that it has the execution bit set.</p>
 <pre><code>chmod +x ./db2shift
 </code></pre>
@@ -763,8 +767,8 @@ version, the screen may look distorted.</p>
 <p><img alt="Bad Version" src="../img/c2c_bad_version.png" /></p>
 <p>If your display looks like this, then you will have the
 wrong version installed. If you are running on a different
-platform than those listed above, please contact us
-directly. See Appendix B for details.</p>
+platform than those listed above, please contact support.
+See Appendix B for details.</p>
 <h2 id="program-download">Program Download</h2>
 <p>The program is currently in Technical Preview and is available from the following download site:</p>
 <ul>

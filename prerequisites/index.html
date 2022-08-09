@@ -835,8 +835,8 @@ disk space for the log and control files that are generated.</p>
 <p>The following Linux environments have been tested as source
 systems:</p>
 <ul>
-<li>Linux X64, CentOS (7,8), CentOS Stream, Red Hat (7,8) Ubuntu 18.04, 20.04, SUSE 11.4</li>
-<li>Linux PPC (PowerPC) Little Endian has been tested as a target location</li>
+<li>Linux X64, CentOS (6,7,8), CentOS Stream, Red Hat (6,7,8) Ubuntu (18.04, 20.04, 22.04), SUSE 15, openSUSE 15</li>
+<li>Linux PPC (PowerPC) Little Endian has been tested as a source and target location</li>
 </ul>
 <h2 id="connectivity-requirements">Connectivity Requirements</h2>
 <p>The shifting of a database from one environment to another
@@ -850,7 +850,7 @@ Db2 Shift program will require the following:</p>
 <li>
 <p>A suitable client for the Cluster software</p>
 <ul>
-<li>OpenShift CLI (oc) for OpenShift and Cloud Pak for Data shifts</li>
+<li>OpenShift CLI (oc) 4.0+ for OpenShift and Cloud Pak for Data shifts</li>
 <li>Kuberbetes CLI (kubectl) for all Kubernetes clusters</li>
 <li>SSH serverless connection to the target system</li>
 <li>Local connection does not require a client but is only available for deployment of cloned databases</li>
@@ -864,12 +864,35 @@ Db2 Shift program will require the following:</p>
 <li>A connection between the Source and Target servers </li>
 <li>Sufficient disk space in /tmp or other directory (for Clone operations only)</li>
 </ul>
-<p>Note that some Linux distributions do not support the
-OpenShift CLI. For instance, only the Kubernetes CLI is
-available for SUSE 11.4 environments. Customers wanting to
-shift from a SUSE 11.4 environment to CP4D or OpenShift will
-need to use the Clone option and then copy the clone
+<p><strong>Note 1:</strong> Only the OpenShift 4.0+ client is supported for shift operations. The
+target cluster can be OpenShift 3.11 or OpenShift 4.0+.</p>
+<p><strong>Note 2:</strong> Some Linux distributions do not support the
+OpenShift CLI. Customers wanting to
+shift from an environment that does not support the 
+OpenShift CLI will need to use the Clone option and then copy the clone
 directory to a client that does support the OC client.</p>
+<p>For an OpenShift or Cloud Pak for Data
+environment, download a copy of the <code>OC</code> version 4 command line interface from:</p>
+<ul>
+<li><a href="https://access.redhat.com/">Red Hat Customer Portal</a></li>
+<li><a href="https://github.com/openshift/oc">OpenShift Github</a></li>
+<li><a href="https://docs.okd.io/latest/cli_reference/openshift_cli/getting-started-cli.html">OpenShift Community Distribution</a></li>
+</ul>
+<p>For Kubernetes distributions, you can download the code from:</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/">Kubernetes Tools</a> </li>
+</ul>
+<p>You can also issue the following command from a Linux terminal window to download
+the code:</p>
+<pre><code>curl -LO &quot;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl&quot;
+</code></pre>
+<p>Once the code has been downloaded, place the code into the
+local bin directory and make sure that it has been marked as
+executable.</p>
+<pre><code>chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+</code></pre>
 <h2 id="userid-and-authentication-requirements">Userid and Authentication Requirements</h2>
 <p>The Db2 Shift operation must take place under the userid of
 the INSTANCE owner of the database being shifted.
