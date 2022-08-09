@@ -169,7 +169,7 @@ The Db2 Shift program can clone an existing Db2 database into two environments:
 
 ### Cloning into a Containerized Environment
 
-For instances where you are shifting to a Db2U POD, the POD must already exist and the
+For instances where you are shifting to a Db2U POD, the POD must already exist, and the
 database must have been created. Depending on what you plan to do with the target
 database, the database name must be:
 
@@ -181,7 +181,7 @@ database, the database name must be:
 
 * Any valid database name
 
-If you move a database (i.e. SAMPLE) into a Db2U POD database called DB2OLTP, the
+If you move a database (i.e., SAMPLE) into a Db2U POD database called DB2OLTP, the
 contents of the database SAMPLE will end up in DB2OLTP. In other words, the SAMPLE
 database is shifted and renamed to DB2OLTP. If you want to have the same database name,
 then you must create the database with the same name.
@@ -338,7 +338,7 @@ LOGARCHMETH2|{}/db2_portable/archive_log_mirror/
 OVERFLOWLOG_PATH|{}/db2_portable/overflow_logs/
 OTHER_LOG_PATH|{}/db2_portable/primary_logs/
 ```
-Note that the mount path depends on the path type e.g. `MIRRORLOG_PATH` 
+Note that the mount path depends on the path type e.g., `MIRRORLOG_PATH` 
 is not necessarily at the end of the path defined in the default config. 
 That is because of the unique naming requirement for paths and the assumption 
 that paths need to be multi-tenant capable.
@@ -363,7 +363,7 @@ prior to the shift :
 mkdir /mnt/mirror_logs
 ```
 
-**Note**: The Db2 Shift tool creates the `dft_paths.cfg` on startup if
+**Note**: The Db2 Shift tool creates the `dft_paths.cfg` on start-up if
 it does not already exist. If you need to recreate the
 file with default values, simply delete the file. If the file
 already exists in the directory, it will not be recreated by
@@ -378,7 +378,7 @@ first before running the tool. The other path changes,
 as per above, will be observed. 
 
 For alternate Storage paths you can mount the volume at a
-lower level but you must know how many paths will be
+lower level, but you must know how many paths will be
 included. This can be determined by looking at the `new0.cfg`
 file after a generate settings run.
 
@@ -427,7 +427,7 @@ supported for moves to containers which are identified with the
 ## Encrypted Databases
 
 The Db2 Shift utility can only shift encryption keys that are available
-locally to the database. If your database uses an enterprise key manager then
+locally to the database. If your database uses an enterprise key manager, then
 you will need to register that key manager at the target pod or instance.
 
 If you are shifting to another Db2 instance or pod that contains multiple

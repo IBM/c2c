@@ -36,7 +36,7 @@ following command:
 toe -a
 ```
 This will produce a list of terminal emulations. The
-preferred settings is xterm-256color, but other color
+preferred setting is xterm-256color, but other color
 options may also work.
 
 Update the terminal emulation setting by issuing the command:
