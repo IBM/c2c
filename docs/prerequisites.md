@@ -51,8 +51,8 @@ disk space for the log and control files that are generated.
 The following Linux environments have been tested as source
 systems:
 
-* Linux X64, CentOS (7,8), CentOS Stream, Red Hat (7,8) Ubuntu 18.04, 20.04, SUSE 11.4
-* Linux PPC (PowerPC) Little Endian has been tested as a target location
+* Linux X64, CentOS (6,7,8), CentOS Stream, Red Hat (6,7,8) Ubuntu (18.04, 20.04, 22.04), SUSE 15, openSUSE 15
+* Linux PPC (PowerPC) Little Endian has been tested as a source and target location
 
 ## Connectivity Requirements
 
@@ -67,7 +67,7 @@ Db2 Shift program will require the following:
 
 * A suitable client for the Cluster software
 
-    * OpenShift CLI (oc) for OpenShift and Cloud Pak for Data shifts
+    * OpenShift CLI (oc) 4.0+ for OpenShift and Cloud Pak for Data shifts
     * Kuberbetes CLI (kubectl) for all Kubernetes clusters
     * SSH serverless connection to the target system
     * Local connection does not require a client but is only available for deployment of cloned databases
@@ -78,12 +78,41 @@ Db2 Shift program will require the following:
 * A connection between the Source and Target servers 
 * Sufficient disk space in /tmp or other directory (for Clone operations only)
 
-Note that some Linux distributions do not support the
-OpenShift CLI. For instance, only the Kubernetes CLI is
-available for SUSE 11.4 environments. Customers wanting to
-shift from a SUSE 11.4 environment to CP4D or OpenShift will
-need to use the Clone option and then copy the clone
+**Note 1:** Only the OpenShift 4.0+ client is supported for shift operations. The
+target cluster can be OpenShift 3.11 or OpenShift 4.0+.
+
+**Note 2:** Some Linux distributions do not support the
+OpenShift CLI. Customers wanting to
+shift from an environment that does not support the 
+OpenShift CLI will need to use the Clone option and then copy the clone
 directory to a client that does support the OC client.
+
+For an OpenShift or Cloud Pak for Data
+environment, download a copy of the `OC` version 4 command line interface from:
+
+* [Red Hat Customer Portal](https://access.redhat.com/)
+* [OpenShift Github](https://github.com/openshift/oc)
+* [OpenShift Community Distribution](https://docs.okd.io/latest/cli_reference/openshift_cli/getting-started-cli.html)
+ 
+For Kubernetes distributions, you can download the code from:
+
+* [Kubernetes Tools](https://kubernetes.io/docs/tasks/tools/) 
+
+You can also issue the following command from a Linux terminal window to download
+the code:
+
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+ 
+Once the code has been downloaded, place the code into the
+local bin directory and make sure that it has been marked as
+executable.
+```
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+```
 
 ## Userid and Authentication Requirements
 
