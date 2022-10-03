@@ -22,6 +22,10 @@
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+          
+          
+          <meta name="theme-color" content="#000000">
+        
       
       
     
@@ -31,8 +35,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
       
     
     
@@ -50,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
   
     
     
@@ -76,8 +80,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Db2 Click to Containerize" class="md-header__button md-logo" aria-label="Db2 Click to Containerize" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,8 +165,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Db2 Click to Containerize" class="md-nav__button md-logo" aria-label="Db2 Click to Containerize" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
 
     </a>
     Db2 Click to Containerize
@@ -340,6 +342,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hadr-using-a-clone-copy" class="md-nav__link">
+    HADR using a Clone Copy
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -349,6 +358,33 @@
   <a href="#database-storage-relocation" class="md-nav__link">
     Database Storage Relocation
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#force-database-creation-and-mirror-paths" class="md-nav__link">
+    Force Database Creation and Mirror Paths
+  </a>
+  
+    <nav class="md-nav" aria-label="Force Database Creation and Mirror Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mirror-path-only" class="md-nav__link">
+    Mirror Path (Only)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mirror-path-and-force-database-creation" class="md-nav__link">
+    Mirror Path and Force Database Creation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -907,6 +943,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#hadr-using-a-clone-copy" class="md-nav__link">
+    HADR using a Clone Copy
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -916,6 +959,33 @@
   <a href="#database-storage-relocation" class="md-nav__link">
     Database Storage Relocation
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#force-database-creation-and-mirror-paths" class="md-nav__link">
+    Force Database Creation and Mirror Paths
+  </a>
+  
+    <nav class="md-nav" aria-label="Force Database Creation and Mirror Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mirror-path-only" class="md-nav__link">
+    Mirror Path (Only)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mirror-path-and-force-database-creation" class="md-nav__link">
+    Mirror Path and Force Database Creation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1216,6 +1286,26 @@ database was in read-only mode and needed to be identical to the primary databas
 After the switch to primary
 status, you are now able to register the database to CP4D and be able to manage it
 from the DMC console.</p>
+<h3 id="hadr-using-a-clone-copy">HADR using a Clone Copy</h3>
+<p>You can use a Clone copy of a database to create an HADR pair. The Clone copy must have been
+created with the following pre-requisites:</p>
+<ul>
+<li>The databases must both be at the same level (Upgrade not supported)</li>
+<li>The primary must have logging enabled and a full backup generated before generating the Clone</li>
+<li>The primary was online during the cloning process</li>
+</ul>
+<p>Once you create the Standby database (Deploy to Instance), you must copy the following files from the
+target server (where you ran the Db2 Shift deploy command) and copy them to the source system where you 
+ran the original Db2 Shift clone command:</p>
+<ul>
+<li>source.settings</li>
+<li>destination.settings</li>
+</ul>
+<p>At the source system, run the HADR intialization step for a POD or Instance.</p>
+<p>When the HADR initialization is run after a 
+standard shift operation, the settings files would have been generated at the same time. Since you
+are using a Clone copy, there is no information available about the destination server, so these files 
+need to be made available to Db2 Shift in order for the HADR command to work.</p>
 <h2 id="database-storage-relocation">Database Storage Relocation</h2>
 <p>When shifting a database to a POD or to another Db2 instance, the storage
 paths will need to be modified in order for Db2 to run. The
@@ -1337,6 +1427,60 @@ structure, it will likely be deleted in the Db2 Shift process.</p>
 <p><strong>Note</strong>: No changes to the <code>dft_paths.cfg</code> are
 supported for moves to containers which are identified with the 
 <code>pod</code> keyword at the end of a control line.</p>
+<h2 id="force-database-creation-and-mirror-paths">Force Database Creation and Mirror Paths</h2>
+<p>The Db2 Shift utility provides an option to create a database at the target location (Instance Only).
+The option is available on the Shift to Instance and Deploy to Instance menus.</p>
+<p>Syntax: <code>--dest-create-db</code> <code>--mirror-path</code>
+<img alt="Target Database" src="../img/field_mirror_path.png" /></p>
+<p>The following describes how Db2 Shift handles the creation of databases at the target instance:</p>
+<ol>
+<li>If no options are set:<ul>
+<li>If the target database does not exist, an error message will be returned and processing stops</li>
+<li>Otherwise, the contents of the target database will be replaced with the source database using the target's home database directory</li>
+</ul>
+</li>
+<li>If <code>--dest-create-db</code> is set: <ul>
+<li>If the target database exists, it will be <strong>dropped</strong>!</li>
+<li>The target database is created using the path <code>/$HOME/db2_portable</code></li>
+</ul>
+</li>
+<li>If <code>--mirror-path</code> is set:<ul>
+<li>If the target database does not exist, an error message will be returned and processing stops</li>
+<li>Otherwise, the contents of the target database will be replaced with the source database using 
+  <strong>exactly the same paths</strong> as the source database</li>
+</ul>
+</li>
+<li>If <code>--dest-create-db</code> and <code>--mirror-path</code> is set:<ul>
+<li>If the target database exists, it will be <strong>dropped</strong>!</li>
+<li>The target database is created, using <strong>exactly the same paths</strong> as the source database</li>
+</ul>
+</li>
+</ol>
+<p>Scenarios 3 and 4 require special care in their usage and are discussed below.</p>
+<h3 id="mirror-path-only">Mirror Path (Only)</h3>
+<p>When a request is made to use an existing database using <code>--mirror-path</code>, the following must be true:</p>
+<ul>
+<li>The directory structure used by the source database must be replicated at the target database</li>
+<li>The instance owner and database name must be identical</li>
+<li>The target instance owner must have appropriate permissions to read/write to these directories</li>
+</ul>
+<p>The shift or deploy operation will fail if a directory structure is not found at the target site.</p>
+<p>Example: Database <code>TRADING</code> was created at the source using the following syntax:</p>
+<pre><code>CREATE DATABASE TRADING ON /path1, /path2, /path3
+</code></pre>
+<p>In order for the <code>--mirror-path</code> option work correctly, the destination database must be created using
+the identical paths:</p>
+<pre><code>CREATE DATABASE TRADING ON /path1, /path2, /path3
+</code></pre>
+<p>You cannot change the name of the database when using this technique.</p>
+<h3 id="mirror-path-and-force-database-creation">Mirror Path and Force Database Creation</h3>
+<p>It is possible for the Db2 Shift Utility to create a database using mirror paths, but there are 
+a number of limitations when using this feature. When Db2 Shift creates the target database, it will take all of the paths, except the default database path, and use them as the destination paths on the target instance. The paths must already exists, or the Db2 Shift utility must be able to create the paths.</p>
+<p>If the generated database configuration directory number (e.g. <code>SQL00001</code>) does not match across source and target systems, an error will occur. In this case you should manually create the target database on a different path. This is a limitation of the Db2 relocation utility.</p>
+<p>A simple example highlights the problem. Running a <code>db2 list db directory</code> on your source system may
+result in 4 databases being displayed: <code>SAMPLE</code>, <code>HR</code>, <code>ACCOUNTS</code>, and <code>BANKING</code>. The target instance currently has no databases. When attempting to shift <code>ACCOUNTS</code> to the target system using <code>--dest-create-db</code> and <code>--mirror-path</code>, the shift will fail because <code>ACCOUNTS</code> is using <code>SQL00003</code> at the source and it will be created as <code>SQL00001</code> at the target. </p>
+<p>The scenario that best suits the <code>--dest-create-db</code> and <code>--mirror-path</code> option is a Db2 instance that 
+contains only 1 database that is being shifted to an empty Db2 instance.</p>
 <h2 id="encrypted-databases">Encrypted Databases</h2>
 <p>The Db2 Shift utility can only shift encryption keys that are available
 locally to the database. If your database uses an enterprise key manager, then
@@ -1494,6 +1638,10 @@ initial Db2 Shift tests.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM
+    </div>
   
   
     Made with

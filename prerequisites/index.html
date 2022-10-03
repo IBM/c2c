@@ -22,6 +22,10 @@
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
         
+          
+          
+          <meta name="theme-color" content="#000000">
+        
       
       
     
@@ -31,8 +35,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
       
     
     
@@ -50,7 +54,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
   
     
     
@@ -76,8 +80,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Db2 Click to Containerize" class="md-header__button md-logo" aria-label="Db2 Click to Containerize" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -162,8 +165,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Db2 Click to Containerize" class="md-nav__button md-logo" aria-label="Db2 Click to Containerize" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
 
     </a>
     Db2 Click to Containerize
@@ -968,6 +970,7 @@ should match the SOURCE database requirements. </p>
 <li>The system contains external procedures which are not in the standard Db2 library - these will need to be manually recreated and catalogued</li>
 <li>The LOGARCHMETH1/2 setting only supports DISK as a target in Db2u</li>
 <li>The database encryption keys will be moved to the new location, but if the target already has encrypted databases then you will need to manually migrate the encryption key to the target location</li>
+<li>The 11.5.7 <code>ctrl_recov_file_path</code> database setting must be set to <code>NULL</code> before shifting a database. If the setting is anything other than <code>NULL</code>, the target database will not be able to start until an indentical path is available at the target. </li>
 </ul>
 <h2 id="instance-owner-and-dbadm-and-secadm-userid">Instance Owner and DBADM and SECADM Userid</h2>
 <p>Special care must be taken when moving a database into Cloud Pak for Data or into any Db2U deployment. The Db2U POD always uses db2inst1 as the instance owner. If your instance owner is different (i.e., db2inst2), the db2inst1 user at the target will not have any privileges on this database. You will not be able to manage the database.</p>
@@ -1032,6 +1035,10 @@ container.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 IBM
+    </div>
   
   
     Made with
