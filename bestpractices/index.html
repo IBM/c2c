@@ -1301,7 +1301,7 @@ ran the original Db2 Shift clone command:</p>
 <li>source.settings</li>
 <li>destination.settings</li>
 </ul>
-<p>At the source system, run the HADR intialization step for a POD or Instance.</p>
+<p>At the source system, run the HADR initialization step for a POD or Instance.</p>
 <p>When the HADR initialization is run after a 
 standard shift operation, the settings files would have been generated at the same time. Since you
 are using a Clone copy, there is no information available about the destination server, so these files 
@@ -1476,7 +1476,7 @@ the identical paths:</p>
 <h3 id="mirror-path-and-force-database-creation">Mirror Path and Force Database Creation</h3>
 <p>It is possible for the Db2 Shift Utility to create a database using mirror paths, but there are 
 a number of limitations when using this feature. When Db2 Shift creates the target database, it will take all of the paths, except the default database path, and use them as the destination paths on the target instance. The paths must already exists, or the Db2 Shift utility must be able to create the paths.</p>
-<p>If the generated database configuration directory number (e.g. <code>SQL00001</code>) does not match across source and target systems, an error will occur. In this case you should manually create the target database on a different path. This is a limitation of the Db2 relocation utility.</p>
+<p>If the generated database configuration directory number (e.g., <code>SQL00001</code>) does not match across source and target systems, an error will occur. In this case you should manually create the target database on a different path. This is a limitation of the Db2 relocation utility.</p>
 <p>A simple example highlights the problem. Running a <code>db2 list db directory</code> on your source system may
 result in 4 databases being displayed: <code>SAMPLE</code>, <code>HR</code>, <code>ACCOUNTS</code>, and <code>BANKING</code>. The target instance currently has no databases. When attempting to shift <code>ACCOUNTS</code> to the target system using <code>--dest-create-db</code> and <code>--mirror-path</code>, the shift will fail because <code>ACCOUNTS</code> is using <code>SQL00003</code> at the source and it will be created as <code>SQL00001</code> at the target. </p>
 <p>The scenario that best suits the <code>--dest-create-db</code> and <code>--mirror-path</code> option is a Db2 instance that 

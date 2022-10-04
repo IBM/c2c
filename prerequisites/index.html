@@ -970,7 +970,7 @@ should match the SOURCE database requirements. </p>
 <li>The system contains external procedures which are not in the standard Db2 library - these will need to be manually recreated and catalogued</li>
 <li>The LOGARCHMETH1/2 setting only supports DISK as a target in Db2u</li>
 <li>The database encryption keys will be moved to the new location, but if the target already has encrypted databases then you will need to manually migrate the encryption key to the target location</li>
-<li>The 11.5.7 <code>ctrl_recov_file_path</code> database setting must be set to <code>NULL</code> before shifting a database. If the setting is anything other than <code>NULL</code>, the target database will not be able to start until an indentical path is available at the target. </li>
+<li>The 11.5.7 <code>ctrl_recov_file_path</code> database setting must be set to <code>NULL</code> before shifting a database. If the setting is anything other than <code>NULL</code>, the target database will not be able to start until an identical path is available at the target. </li>
 </ul>
 <h2 id="instance-owner-and-dbadm-and-secadm-userid">Instance Owner and DBADM and SECADM Userid</h2>
 <p>Special care must be taken when moving a database into Cloud Pak for Data or into any Db2U deployment. The Db2U POD always uses db2inst1 as the instance owner. If your instance owner is different (i.e., db2inst2), the db2inst1 user at the target will not have any privileges on this database. You will not be able to manage the database.</p>
