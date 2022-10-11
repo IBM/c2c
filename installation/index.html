@@ -757,10 +757,10 @@ the tar file will create a directory structure that contains the following:</p>
 </ul>
 </li>
 </ul>
-<p>Each directory will contain the <code>db2shift</code> program suitable for that 
-Linux distribution.</p>
-<p>Place the program into its own directory and make sure that it has the execution bit set.</p>
-<pre><code>chmod +x ./db2shift
+<p>Each directory will contain the db2shift program suitable for that Linux distribution (i.e., db2shift-centos8).</p>
+<p>Place the program into its own directory and make sure that it has the execution bit set. You  may also want to change the program name to <code>db2shift</code>.</p>
+<pre><code>mv db2shift-centos8 db2shift
+chmod +x ./db2shift
 </code></pre>
 <p>Additional versions may be added depending on feedback from users. </p>
 <p>The program will work in command mode for all environments.
