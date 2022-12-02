@@ -737,6 +737,12 @@ if either the following options are included on the command line:</p>
 <li><code>--logs</code> – View logs from last shift execution</li>
 </ul>
 <p>Details of how to navigate the UI system are found in the <a href="../gui/">User Inteface Overview</a> section.</p>
+<p>The Db2 Shift utility requires that the Db2 commands be executed with the
+environment setting set to <code>en_US</code> (or equivalent English):</p>
+<pre><code>setenv LANG=en_US.utf8
+</code></pre>
+<p>If you do not change the language setting, the command results cannot be interpreted due 
+to the translation that is done by the command interpreter.</p>
 <h2 id="syntax-summary">Syntax Summary</h2>
 <p>The following is a list of all options that are available with the Db2 Shift command:</p>
 <pre><code class="language-bash">db2shift

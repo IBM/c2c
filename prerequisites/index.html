@@ -244,6 +244,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#language-requirements" class="md-nav__link">
+    Language Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#connectivity-requirements" class="md-nav__link">
     Connectivity Requirements
   </a>
@@ -747,6 +754,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#language-requirements" class="md-nav__link">
+    Language Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#connectivity-requirements" class="md-nav__link">
     Connectivity Requirements
   </a>
@@ -837,9 +851,16 @@ disk space for the log and control files that are generated.</p>
 <p>The following Linux environments have been tested as source
 systems:</p>
 <ul>
-<li>Linux X64, CentOS (6,7,8), CentOS Stream, Red Hat (6,7,8) Ubuntu (18.04, 20.04, 22.04), SUSE 15, openSUSE 15</li>
+<li>Linux X64, CentOS (6,7,8), CentOS Stream, Red Hat (6,7,8) Ubuntu (18.04, 20.04, 22.04), SUSE (12,15), openSUSE 15</li>
 <li>Linux PPC (PowerPC) Little Endian has been tested as a source and target location</li>
 </ul>
+<h2 id="language-requirements">Language Requirements</h2>
+<p>The Db2 Shift utility requires that the Db2 commands be executed with the
+environment setting set to <code>en_US</code> (or equivalent English):</p>
+<pre><code>setenv LANG=en_US.utf8
+</code></pre>
+<p>If you do not change the language setting, the command results cannot be interpreted due 
+to the translation that is done by the command interpreter.</p>
 <h2 id="connectivity-requirements">Connectivity Requirements</h2>
 <p>The shifting of a database from one environment to another
 requires connectivity between the servers. The process by

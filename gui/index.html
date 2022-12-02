@@ -282,6 +282,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#language-requirements" class="md-nav__link">
+    Language Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#menu-system-overview" class="md-nav__link">
     Menu System Overview
   </a>
@@ -842,6 +849,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#language-requirements" class="md-nav__link">
+    Language Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#menu-system-overview" class="md-nav__link">
     Menu System Overview
   </a>
@@ -1058,6 +1072,13 @@ graphical characters:</p>
 </ul>
 <p>The following screen illustrates the difference in mono mode.</p>
 <p><img alt="No Unicode" src="../img/c2c_mono_mode.png" /></p>
+<h2 id="language-requirements">Language Requirements</h2>
+<p>The Db2 Shift utility requires that the Db2 commands be executed with the
+environment setting set to <code>en_US</code> (or equivalent English):</p>
+<pre><code>setenv LANG=en_US.utf8
+</code></pre>
+<p>If you do not change the language setting, the command results cannot be interpreted due 
+to the translation that is done by the command interpreter.</p>
 <h2 id="menu-system-overview">Menu System Overview</h2>
 <p>The Db2 Shift menu system provides access to all scenarios that are described in this
 documentation:</p>
