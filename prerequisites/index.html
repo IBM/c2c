@@ -244,6 +244,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#temporary-space-requirements" class="md-nav__link">
+    Temporary Space Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#language-requirements" class="md-nav__link">
     Language Requirements
   </a>
@@ -754,6 +761,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#temporary-space-requirements" class="md-nav__link">
+    Temporary Space Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#language-requirements" class="md-nav__link">
     Language Requirements
   </a>
@@ -854,6 +868,56 @@ systems:</p>
 <li>Linux X64, CentOS (6,7,8), CentOS Stream, Red Hat (6,7,8) Ubuntu (18.04, 20.04, 22.04), SUSE (12,15), openSUSE 15</li>
 <li>Linux PPC (PowerPC) Little Endian has been tested as a source and target location</li>
 </ul>
+<h2 id="temporary-space-requirements">Temporary Space Requirements</h2>
+<p>The Db2 Shift program requires access to the temporary file directory (<code>/tmp</code>) to
+unpack the executable and for temporary storage of control files.</p>
+<p>The Db2 Shift program generates temporary files in the process of analyzing the source and 
+destination databases. The source instance must have access to the <code>/tmp</code> directory. If you
+are shifting to a traditional Db2 instance (not a Db2u container on OpenShift or Kubernetes), the
+target server must also provide access to the <code>/tmp</code> directory.</p>
+<p>If you execute the Db2 Shift command and an error similar to the following appears:</p>
+<pre><code>db2shift: error while loading shared libraries: libz.so.1: 
+failed to map segment from shared object
+</code></pre>
+<p>This indicates that the executable is unable to unpack the libraries required to run the 
+code. You can start the Db2 Shift program by creating an alternate temp space location:</p>
+<pre><code>mkdir ~/TMP
+export TMPDIR=~/TMP
+</code></pre>
+<p>If you are able to start the Db2 Shift program at this point you will know that the 
+executable is correct. However, this will not provide the proper permissions for the
+Db2 Shift process to execute.</p>
+<p>The following command will display the permission bits of the <code>/tmp</code> directory:</p>
+<pre><code>ls -ad /tmp
+</code></pre>
+<p>Your display will be similar to the following:</p>
+<pre><code>drwxrwxrwt. 17 root root 4096 Dec  5 16:28 /tmp
+</code></pre>
+<p>If <code>rwx</code> is not available to all users then you will not be able to run the program. The
+permission bits should be changed to:</p>
+<pre><code>sudo chmod 1777 /tmp
+</code></pre>
+<p>If the permission bits appear to be correct, then the problem may be with the way the
+<code>/tmp</code> directory has been mounted. Using the <code>df</code> command, you will be able to
+determine if <code>/tmp</code> has a mount point.</p>
+<pre><code>df
+...
+/dev/nvme0n2     5232640    69544   5163096   2% /tmp
+...
+</code></pre>
+<p>If <code>/tmp</code> is mounted to a separate file system, you need to reissue the mount 
+command to allow execution in the <code>/tmp</code> directory.</p>
+<pre><code>sudo mount /tmp -o remount,exec
+</code></pre>
+<p>This should allow the program to run without file system errors. Make sure that both 
+the source and target are set to allow execution in the <code>/tmp</code> directory. Note that 
+the requirement for <code>/tmp</code> at the target only applies to databases being shifted
+to another instance, <strong>not</strong> Db2U containers found in OpenShift, Kubenetes or 
+Cloud Pak for Data. </p>
+<p>One you have completed the shift, you can restore the <code>/tmp</code> settings back to 
+restricting execution of commands.</p>
+<pre><code>sudo mount /tmp -o remount,noexec
+</code></pre>
 <h2 id="language-requirements">Language Requirements</h2>
 <p>The Db2 Shift utility requires that the Db2 commands be executed with the
 environment setting set to <code>en_US</code> (or equivalent English):</p>
