@@ -1767,7 +1767,8 @@ specified by this field. If you are pulling a copy (<code>--mode=pull_clone</cod
 field contains the cloned database that is going to move to the local directory.</p>
 <h2 id="synchronization-options">Synchronization Options</h2>
 <p>Syntax:  <code>--sync=[start_sync, rerun_sync, finish_sync]</code>
-<img alt="Sync Options" src="../img/field_sync.png" /></p>
+<img alt="Sync Options" src="../img/field_sync.png" />
+<img alt="Meta Data" src="../img/field_metadata.png" /></p>
 <p>The Db2 Shift program has two methods of moving the database to the
 destination. The traditional method is to take one pass at the database
 and move everything at once. During the finishing process, the program
@@ -1779,11 +1780,13 @@ to how much information has changed during the shift process. In the
 event that you have large amount of changes, the final refresh may
 too long an outage. To minimize this outage, you can use the 
 synchronization options provided.</p>
-<p>The default setting is do a complete shift operation without intermediate sync operations.</p>
+<p>The default setting is do a complete shift operation without intermediate sync operations.
+Note that the metadata <code>--blank-slate=true</code> must be collected when running this command.</p>
 <p>To initialize the synchronization option, the first Db2 Shift
 command will use the sync option.</p>
-<p>Syntax: <code>--sync=start_sync</code>
-<img alt="Sync Options" src="../img/field_sync_init.png" /></p>
+<p>Syntax: <code>--sync=start_sync</code> <code>--new-settings=true</code>
+<img alt="Sync Options" src="../img/field_sync_init.png" />
+<img alt="Meta Data" src="../img/field_metadata.png" /></p>
 <p>This initial step will instruct Db2 Shift to copy all of the 
 required database objects to the target system. Once the copies are 
 complete, the program will end processing and leave the target
@@ -1791,8 +1794,16 @@ system in an incomplete state. During this process the source
 database is operational and it will <strong>not be suspended</strong>. </p>
 <p>When there is an appropriate moment, the database movement can 
 be finalized with the <code>finish_sync</code> option.</p>
-<p>Syntax: <code>--sync=finish_sync</code>
-<img alt="Sync Options" src="../img/field_sync_finalize.png" /></p>
+<p><strong>Note:</strong> When using the <code>--sync=rerun_sync</code> or <code>--sync=finish_sync</code> options,
+you must set <code>--new-settings</code> or <code>--blank-slate</code> to <code>false</code>. 
+The control settings for the source and destination 
+databases must be generated during the first call to <code>--sync=start_sync</code> and should not
+be refreshed. If you do set <code>--new-settings=false</code>, an error message will be
+generated because the target database will not be reachable. You can safely run the 
+command again by changing the setting to <code>--new-settings=false</code>.</p>
+<p>Syntax: <code>--sync=finish_sync</code> <code>--new-settings=false</code>
+<img alt="Sync Options" src="../img/field_sync_finalize.png" />
+<img alt="Meta Data" src="../img/field_no_metadata.png" /></p>
 <p>The <code>finish_sync</code> option will do one final pass against the source
 database and then it will finalize the database movement on the 
 destination site. During the last pass the finish process will
@@ -1809,7 +1820,8 @@ or have changed since the initial synchronization request. The
 command to do the sync and only refresh the database objects
 requires the use of the <code>rerun_sync</code> option.</p>
 <p>Syntax: <code>--sync=rerun_sync</code>
-<img alt="Sync Options" src="../img/field_sync_refresh.png" /></p>
+<img alt="Sync Options" src="../img/field_sync_refresh.png" />
+<img alt="Meta Data" src="../img/field_no_metadata.png" /></p>
 <p>The <code>rerun_sync</code> option indicates to the Db2 Shift program to
 start syncing process to look for delta changes only.</p>
 <p>The <code>--sync=rerun_sync</code> process can be run repeatedly until
@@ -1817,7 +1829,8 @@ the amount of changes between runs is minimized. When an appropriate
 timeslot is available, the shift can be finalized by using the
 <code>finish_sync</code> option.</p>
 <p>Syntax: <code>--sync=finish_sync</code>
-<img alt="Sync Options" src="../img/field_sync_finalize.png" /></p>
+<img alt="Sync Options" src="../img/field_sync_finalize.png" />
+<img alt="Meta Data" src="../img/field_no_metadata.png" /></p>
 <p>The <code>finish_sync</code> option will perform the final pass against the source
 database and complete the shift process as before.</p>
 <p>In summary, the standard shift operation will complete in one step (no
