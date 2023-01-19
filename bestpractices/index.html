@@ -264,6 +264,26 @@
     Database Migration and Upgrades
   </a>
   
+    <nav class="md-nav" aria-label="Database Migration and Upgrades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadr-settings" class="md-nav__link">
+    HADR Settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-upgrades" class="md-nav__link">
+    Database Upgrades
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -865,6 +885,26 @@
     Database Migration and Upgrades
   </a>
   
+    <nav class="md-nav" aria-label="Database Migration and Upgrades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadr-settings" class="md-nav__link">
+    HADR Settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-upgrades" class="md-nav__link">
+    Database Upgrades
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1060,7 +1100,22 @@ regular basis.</p>
 <p>The Db2 Shift command will migrate a database from Version
 10.5 and 11.1 to the latest version of Db2 (11.5). Databases
 that are at older release levels will need to be migrated to
-10.5 or 11.1 before using the Db2 Shift utility.</p>
+10.5 or 11.1 before using the Db2 Shift utility. Care must also be
+taken with databases that are running with HADR enabled.</p>
+<h3 id="hadr-settings">HADR Settings</h3>
+<p>A database being shifted must not be in HADR <code>PRIMARY</code> or
+<code>STANDBY</code> mode. You must stop HADR before attempting to do a
+shift, otherwise the system will issue an error message.</p>
+<pre><code>Error: HADR STATUS FOR SOURCE NOT VALID, Value Supplied: PRIMARY
+Error: Failed HADR_status Check.
+Make sure neither the source nor the target are not in HADR mode
+</code></pre>
+<p>The Db2 Shift utility creates an exact copy of the database, including 
+all database settings. The HADR setting is tied to the database and 
+creating a copy will conflict with the original database. You could
+potentially have two primaries attempting to communicate to the same 
+standby server.</p>
+<h3 id="database-upgrades">Database Upgrades</h3>
 <p>When performing a Db2 Shift on an older release, the
 database must be shut down or DEACTIVATED before a shift can
 be performed. All Db2 upgrades require that the database be
@@ -1082,7 +1137,10 @@ transactions that were in progress. Make sure that the
 database does not have any workloads running against it if
 you decide to shift when using the <code>--online</code> mode. Note that
 having a database in DEACTIVATED state is not a guarantee
-that no one can connect to the database.</p>
+that the database will be in a consistent state! If any monitoring
+tools (or users) issue a connect statement, the database will
+be ACTIVATED and potentially cause the copy to be inconsistent! A <code>db2stop</code>
+will guarantee that the database will be in a consistent state.</p>
 <p>The other option to reduce outage time for a database is to
 use the clone option. A clone copy can be used for an
 upgrade and the database can be write suspended when using
